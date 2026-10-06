@@ -1,3 +1,4 @@
+import {syncAccountBackup} from './account-backup';
 import { HelpfulRewardTile } from "./HelpfulRewardTile";
 import { isHelpfulReview } from './review-rewards';
 import { useFreeAccount } from "./useFreeAccount";
@@ -13,6 +14,8 @@ export function ContributionRewards() {
   const account=useFreeAccount();
   const key=freeCollaborationEnabled ? `contribution-stats:${account?.uid || "guest"}` : "contribution-stats";
   const local = useLiveQuery(() => db.meta.get(key),[key]);
+  const backup=useLiveQuery(()=>account?db.meta.get(`account-backup-status:${account.uid}`):undefined,[account?.uid]);
+  const backupState=backup?.value as {state:string;message?:string}|undefined;
   const helpfulKey=`helpful-badge:${account?.uid||'guest'}`;
   const cachedHelpful=useLiveQuery(()=>db.meta.get(helpfulKey),[helpfulKey]);
   const candidate=useLiveQuery(async()=>{if(!account)return undefined;const details=await db.details.toArray();return details.find(d=>d.reviews.some(r=>r.user_id===account.uid&&isHelpfulReview(r)))?.id;},[account?.uid]);
@@ -27,6 +30,7 @@ export function ContributionRewards() {
     <p>{stats.added} lieu{stats.added > 1 ? "x" : ""} ajouté{stats.added > 1 ? "s" : ""} · {stats.edited} lieu{stats.edited > 1 ? "x" : ""} corrigé{stats.edited > 1 ? "s" : ""}</p>
     {score.next && <><progress value={score.points} max={score.next.at} aria-label={`Prochain niveau : ${score.next.name}, à ${score.next.at} points`} /><small>{score.next.name} · {score.points} / {score.next.at} pts</small></>}
     {(score.badges.length > 0 || helpful) && <div className="earned-badges">{score.badges.map(name => <span className="earned-badge" key={name}><RewardIcon name={name} small /><span>{name}</span></span>)}{helpful && <span className="earned-badge"><RewardIcon name="Avis utile · Pouce" small/><span>Avis utile</span></span>}</div>}
+    {account && <div className="muted" role="status"><small>{backupState?.state==='saved'?'Photo et points sauvegardés sur votre compte.':'Photo et points : sauvegarde en attente. Gardez l’application installée jusqu’à confirmation.'}</small><button className="text-button" onClick={()=>void syncAccountBackup(true)}>Synchroniser la sauvegarde</button></div>}
     <details className="reward-collection"><summary>Grades et badges</summary>
       <div className="reward-grid">{rewardLevels.map(level => <div key={level.name} className={score.points < level.at ? "locked" : ""}>
         <RewardIcon name={level.name} /><span>{level.name}</span><small>{level.at} pts {score.points < level.at && <LockKeyhole size={12} aria-label="À débloquer" />}</small>

@@ -1,3 +1,4 @@
+import {markAvatarForBackup,syncAccountBackup} from './account-backup';
 import { freeCollaborationEnabled, getFreeSession } from "./free-cloud";
 import { useFreeAccount } from "./useFreeAccount";
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
@@ -90,14 +91,21 @@ export function ProfileAvatarEditor({ onClose }: { onClose: () => void }) {
       const path=`avatars/${encodeURIComponent(key)}.txt`;
       if (remove) {
         if(native) await Filesystem.deleteFile({path,directory:Directory.Data}).catch(error=>{if(!/not exist|not found|ENOENT/i.test(String(error))) throw error;});
-        await db.meta.delete(key);
+        await db.transaction("rw",db.meta,async()=>{
+          await db.meta.put({key,value:null});
+          if(freeCollaborationEnabled)await markAvatarForBackup(key.slice("profile-avatar:".length),null);
+        });
       } else if (image) {
         const value=await encodeAvatar(image,crop,controller.signal);
         // Copie durable Android, indépendante du stockage de la WebView.
         if(native) await Filesystem.writeFile({path,data:value,directory:Directory.Data,encoding:Encoding.UTF8,recursive:true});
-        await db.meta.put({key,value});
+        await db.transaction("rw",db.meta,async()=>{
+          await db.meta.put({key,value});
+          if(freeCollaborationEnabled)await markAvatarForBackup(key.slice("profile-avatar:".length),value);
+        });
         if((await db.meta.get(key))?.value!==value) throw new Error('La photo n’a pas été enregistrée. Réessayez.');
       }
+      void syncAccountBackup(true);
       onClose();
     } catch (e) { setError(e instanceof Error ? e.message : 'Impossible d’enregistrer la photo.'); }
     finally { saving.current = false; task.current = null; setBusy(false); }

@@ -136,8 +136,8 @@ export function Detail({
     () => db.favorites.where("id").anyOf(memberIds).first(),
     [memberIds.join(",")],
   );
-  const pending = useLiveQuery(() => db.queue.toArray(), []) || [];
   const freeAccount = useFreeAccount();
+  const pending = useLiveQuery(async () => freeCollaborationEnabled ? (await db.freeQueue.toArray()).filter(q => q.owner === freeAccount?.uid) : db.queue.toArray(), [freeAccount?.uid]) || [];
   useEffect(()=>{
     if(!freeAccount?.isAdmin)return;
     let stop=()=>{};
@@ -232,7 +232,7 @@ export function Detail({
       await validateInformation(d.merged_members || [d], value);
       await refresh();
       setModal("");
-      toast(value ? "Informations validées." : "Lieu marqué à corriger.");
+      toast(freeCollaborationEnabled ? "Validation enregistrée sur cet appareil ; synchronisation en cours." : value ? "Informations validées." : "Lieu marqué à corriger.");
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -427,9 +427,9 @@ export function Detail({
         {detailOffline && <p role="status" className="notice">Hors connexion : seules les données enregistrées sont disponibles.</p>}
         {detailError && <div role="alert" className="notice"><span>{detailError}</span><button className="secondary" disabled={detailLoading} onClick={async()=>{setDetailLoading(true);setDetailError('');try{await loadOpenedDetail(place.id,true);await refresh();}catch(error){setDetailError((error as Error).message);}finally{setDetailLoading(false);}}}>Réessayer</button></div>}
         {(d.photos.length > 0 || (freeCollaborationEnabled && (d.photo_count||0)>0) || (previewState?.value as PreviewState|undefined)?.hasMore) && photosSection}
-        {pending.some((q) => q.operation.place_id === d.id) && (
+        {pending.some((q) => [d.id,...(d.catalog_sources||[]),...(d.merged_members||[]).map(p=>p.id)].includes(q.operation.place_id)) && (
           <p className="notice">
-            Contribution en attente d’envoi ou de vérification dans Profil.
+            Contribution non confirmée sur le compte : consultez son état dans Profil. Ne désinstallez pas l’application avant la fin de l’envoi.
           </p>
         )}
         {(d.address || d.city || origin.chosen) && (

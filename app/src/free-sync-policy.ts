@@ -25,7 +25,7 @@ export function shareableFreeOperation(op: Op, base: Place | undefined, current:
   if (!base && op.kind !== "place.create") return null;
   if (op.kind === "place.edit") {
     const payload = Object.fromEntries(Object.entries(op.payload).filter(([key, value]) => JSON.stringify(value) !== JSON.stringify(current?.[key as keyof Place])));
-    if (!Object.keys(payload).length) return null;
+    if (!Object.keys(payload).length) return { ...op, kind: "place.validate", payload: { value: true } };
     return { ...op, payload };
   }
   if (op.kind === "photo.add") {

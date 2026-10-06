@@ -1,3 +1,5 @@
+import {sharedValidation} from './shared-validation';
+import {mergeBackup,maxStats,cleanStats,type AccountBackup,type BackupInput} from './account-backup-model';
 import {isFreeAdminIdentity} from "./free-admin";
 import { isHelpfulReview } from './review-rewards';
 import { nickname } from './nickname';
@@ -160,6 +162,7 @@ async function deleteCurrentAccount() {
  await deleteDoc(doc(db(),'contacts',uid));
  for(;;){const page: QuerySnapshot=await getDocs(query(collection(db(),'reports'),where('uid','==',uid),queryLimit(20)));if(page.empty)break;for(const item of page.docs)await deleteDoc(item.ref);}
  await deleteDoc(doc(db(),'members',uid,'badges','helpful'));
+ await deleteDoc(doc(db(),'members',uid,'private','profile'));
  for(;;){const page: QuerySnapshot=await getDocs(query(collection(db(),'members',uid,'favorites'),queryLimit(20)));if(page.empty)break;for(const item of page.docs)await deleteDoc(item.ref);}
  await runTransaction(db(),async tx=>{const memberRef=doc(db(),'members',uid),budgetRef=doc(db(),'system','budget');const member=await tx.get(memberRef),budget=await tx.get(budgetRef);if(member.exists()){if(member.data().nameKey)tx.delete(doc(db(),'usernames',member.data().nameKey));tx.delete(memberRef);tx.update(budgetRef,{members:budget.data()!.members-1,lastType:'member-delete',lastId:uid});}});
  if(Capacitor.isNativePlatform()){
@@ -176,7 +179,7 @@ async function deleteCurrentAccount() {
   for(const item of await local.personal.toArray()){
    if(item.review?.user_id===uid || item.photos.some(p=>p.user_id===uid))await local.personal.put({...item,review:item.review?.user_id===uid?{...item.review,author:'Compte supprimé'}:item.review,photos:item.photos.map(p=>p.user_id===uid?{...p,author:'Compte supprimé'}:p)});
   }
-  await local.meta.bulkDelete([`profile-avatar:${uid}`,`favorite-cache:${uid}`,`favorite-pending:${uid}`,`contribution-stats:${uid}`,`helpful-badge:${uid}`]);
+  await local.meta.bulkDelete([`profile-avatar:${uid}`,`favorite-cache:${uid}`,`favorite-pending:${uid}`,`contribution-stats:${uid}`,`helpful-badge:${uid}`,`account-backup:${uid}`,`account-backup-status:${uid}`]);
   const pending=await local.freeQueue.toArray();for(const item of pending)if(item.owner===uid)await local.freeQueue.delete(item.id);
  });
  session=null;emit();
@@ -241,13 +244,9 @@ export async function pushFreeOperation(op: Op, base?: Place): Promise<FreeShare
     if (!session?.isAdmin && daily[key] >= FREE_LIMITS[category]) failure('daily-quota', 'Limite quotidienne atteinte. Votre contribution reste sur cet appareil.');
     daily[key]++;
     const patch = op.kind.startsWith('place.') && !['place.delete','place.validate'].includes(op.kind) ? op.payload : {};
-    const place = existing?.place ? patchRecordedPlace(existing.place,patch,version+1) : compactPlace(op.place_id,{...base,...patch},version+1);
+    const place = sharedValidation(existing?.place ? patchRecordedPlace(existing.place,patch,version+1) : compactPlace(op.place_id,{...base,...patch},version+1),op.kind,op.payload);
     if (existing && op.kind !== 'place.delete' && sharedCell(place) !== existing.cell) failure('conflict', 'Ce déplacement change de secteur. Pour cette version, contactez l’éditeur ; la correction reste sur cet appareil.');
-    if (op.kind === 'place.validate') {
-      place.information_validated = op.payload.value === true;
-      place.validation_changed_at = new Date().toISOString();
-      if (place.information_validated) place.validated_at = place.validation_changed_at;
-    }
+
     if (!place.name || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)) throw new Error('Nom et position du lieu nécessaires.');
     const reviews = { ...(existing?.reviews || {}) };
     if (op.kind === 'review.save') {
@@ -651,4 +650,23 @@ export async function setFreeFavorite(id:string,value:boolean) {
  if(deletingAccount)throw new Error('Suppression du compte en cours.');
  const user=authentication().currentUser;if(!user || user.isAnonymous)throw new Error('Connectez-vous.');
  await setDoc(doc(db(),'members',user.uid,'favorites',id),{id,value,updated:serverTimestamp()});
+}
+
+/** Sauvegarde privée ; ces points décoratifs ne donnent aucun droit ni quota. */
+export async function exchangeAccountBackup(uid:string,input:BackupInput):Promise<AccountBackup>{
+ const ref=doc(db(),'members',uid,'private','profile');
+ return runTransaction(db(),async tx=>{
+  if(getFreeSession()?.uid!==uid||accountDeletionInProgress())throw new Error('Compte changé.');
+  const snapshot=await tx.get(ref);
+  const previous=snapshot.exists()?snapshot.data() as AccountBackup:undefined;
+  // Seuls les ajouts historiques ont exactement la même signification dans les deux compteurs.
+  // « edited » côté serveur inclut aussi photos, avis et validations : ne pas inventer de points.
+  const historical=!previous ? (await tx.get(doc(db(),'members',uid))).data() : undefined;
+  const legacy=maxStats(input.legacy,cleanStats({added:historical?.added,edited:0}));
+  const next=mergeBackup(previous,{...input,legacy});
+  if(getFreeSession()?.uid!==uid||accountDeletionInProgress())throw new Error('Compte changé.');
+  const unchanged=previous && previous.avatar===next.avatar && previous.legacy.added===next.legacy.added && previous.legacy.edited===next.legacy.edited && Object.keys(previous.devices).length===Object.keys(next.devices).length && Object.entries(next.devices).every(([key,value])=>previous.devices[key]?.added===value.added && previous.devices[key]?.edited===value.edited);
+  if(!unchanged)tx.set(ref,{...next,updated:serverTimestamp()});
+  return next;
+ });
 }

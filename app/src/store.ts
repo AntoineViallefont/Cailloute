@@ -1,3 +1,4 @@
+import {syncAccountBackup} from './account-backup';
 import {stored} from "./preferences";
 import { uniqueReviewDetail } from "./latest-reviews";
 import { prepareCanonicalCatalog } from "./canonical-store";
@@ -297,6 +298,7 @@ export async function enqueue(
   base_version?: number,
 ) {
   if(freeCollaborationEnabled && (!getFreeSession() || accountDeletionInProgress())) throw new Error("Connectez-vous pour contribuer.");
+  if(freeCollaborationEnabled && (!getFreeSession()?.verified || !getFreeSession()?.termsAccepted || getFreeSession()?.blocked)) throw new Error("Le partage nécessite un compte vérifié, les conditions acceptées et des contributions autorisées. Consultez Profil.");
   const op: Op = {
     id: crypto.randomUUID(),
     kind,
@@ -333,6 +335,7 @@ export async function enqueue(
         const stats = { ...emptyStats, ...((await db.meta.get(freeCollaborationEnabled ? `contribution-stats:${getFreeSession()?.uid || "guest"}` : "contribution-stats"))?.value as ContributionStats || {}) };
         stats[key]++;
         await db.meta.put({ key: freeCollaborationEnabled ? `contribution-stats:${getFreeSession()?.uid || "guest"}` : "contribution-stats", value: stats });
+        if(freeCollaborationEnabled)await db.meta.put({key:`account-backup-status:${getFreeSession()?.uid}`,value:{state:"pending"}});
       }
     });
     rememberContribution(place_id, kind);
@@ -755,7 +758,7 @@ export async function boot() {
   if (removed.length) await eraseLocalPlaces(removed);
   // Conversion en arrière-plan : les lieux restent consultables immédiatement.
   void compressStoredPhotos().then(() => sync()).catch(() => sync());
-  if (freeCollaborationEnabled && !freeSessionSubscribed) { freeSessionSubscribed = true; subscribeFreeSession(() => {void sync();void syncAccountFavorites();notify();}); }
+  if (freeCollaborationEnabled && !freeSessionSubscribed) { freeSessionSubscribed = true; subscribeFreeSession(() => {void sync();void syncAccountFavorites();void syncAccountBackup(true);notify();}); }
 }
 // Android et la WebView annoncent parfois le même retour deux fois.
 let lastForegroundRefresh=0;

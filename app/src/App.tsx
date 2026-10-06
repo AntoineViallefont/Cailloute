@@ -1,3 +1,4 @@
+import {outsideSearchAnchor} from "./search-zone";
 import {stored,storedFilters,storedOrigin} from "./preferences";
 import { Capacitor } from "@capacitor/core";
 import { ageBands,ageBandForAge } from "./playground-age";
@@ -121,17 +122,21 @@ export default function App() {
   const [catalogError,setCatalogError] = useState("");
   const [center, setCenter] = useState<{lat:number;lon:number;bounds?:PlaceBounds}>({ lat: origin.lat, lon: origin.lon });
   const [pendingZone,setPendingZone]=useState<typeof center|null>(null);
-  const [areaBounds,setAreaBounds]=useState<PlaceBounds|null>(null);
+  const [areaSelection,setAreaSelection]=useState<typeof center|null>(null);
+  const areaBounds=areaSelection?.bounds || null;
   function setOrigin(next:Origin){
-    setPendingZone(null);setAreaBounds(null);setOriginState(next);
+    setPendingZone(null);setAreaSelection(null);setOriginState(next);
   }
   const onMapCenter=useCallback((view:typeof center,userMoved=false)=>{
-    if(userMoved){setPendingZone(view);setSearchOpen(false);}
-    else if(!pendingZone)setCenter(view);
-  },[pendingZone]);
+    if(userMoved){
+      const outside=outsideSearchAnchor(view,areaSelection || origin);
+      setPendingZone(outside?view:null);
+      if(outside)setSearchOpen(false);else setCenter(view);
+    } else if(!pendingZone)setCenter(view);
+  },[pendingZone,areaSelection,origin]);
   function applyVisibleZone(){
     if(!pendingZone?.bounds)return;
-    setCenter(pendingZone);setAreaBounds(pendingZone.bounds);setPendingZone(null);
+    setCenter(pendingZone);setAreaSelection(pendingZone);setPendingZone(null);
     setQuery("");setSearchOpen(false);setResults([]);setSelected(null);setMapTarget(null);
   }
 
@@ -187,7 +192,7 @@ export default function App() {
   const [catalogReady,setCatalogReady]=useState(false);
   const [catalogRevision,setCatalogRevision]=useState(0);
   const [locating, setLocating] = useState(false);
-  const filterOrigin=useMemo(()=>origin.chosen && !areaBounds?origin:{...origin,lat:center.lat,lon:center.lon},[origin,areaBounds,center.lat,center.lon]);
+  const filterOrigin=useMemo(()=>areaSelection?{...origin,lat:areaSelection.lat,lon:areaSelection.lon}:origin.chosen?origin:{...origin,lat:center.lat,lon:center.lon},[origin,areaSelection,center.lat,center.lon]);
   const queryRadius=radiusQueryExtent(filters.radius);
   useEffect(()=>{
     if(loading || !bootReady || !positionReady || screen!=="explore")return;
@@ -250,7 +255,7 @@ export default function App() {
     return rows.map(place=>({place,metres:distance(place,filterOrigin)})).sort((a,b)=>a.metres-b.metres).map(item=>item.place);
   },[places,list,filterOrigin]);
   const filtered = useMemo(
-    () => groupedPlaces.filter((p) => matches(p, areaBounds?{...filters,radius:50000}:filters, filterOrigin) && (!areaBounds || (p.lat>=areaBounds.south && p.lat<=areaBounds.north && p.lon>=areaBounds.west && p.lon<=areaBounds.east))),
+    () => groupedPlaces.filter((p) => matches(p, filters, filterOrigin) && (!areaBounds || (p.lat>=areaBounds.south && p.lat<=areaBounds.north && p.lon>=areaBounds.west && p.lon<=areaBounds.east))),
     [groupedPlaces, filters, filterOrigin, openingMinute,areaBounds],
   );
   const visiblePlaces = useMemo(() => screen === "favorites"
@@ -1045,7 +1050,7 @@ export default function App() {
         </Modal>
       )}
       {welcome && <Welcome onContinue={dismissWelcome} onCreate={()=>{dismissWelcome();setAuthCreate(true);setModal("auth");}} onLogin={()=>{dismissWelcome();setAuthCreate(false);setModal("auth");}}/>}
-      {modal === "auth" && (freeCollaborationEnabled ? <Modal title="Mon compte" onClose={()=>setModal("")}><FreeCollaboration initialOpen initialCreate={authCreate} /></Modal> : <Auth onClose={() => setModal("")} toast={toast} />)}
+      {modal === "auth" && (freeCollaborationEnabled ? <FreeCollaboration initialOpen initialCreate={authCreate} onClose={()=>setModal("")} /> : <Auth onClose={() => setModal("")} toast={toast} />)}
       {modal === "create" && (
         <PlaceForm
           position={center}

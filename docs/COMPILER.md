@@ -80,7 +80,7 @@ backend/.venv/bin/pip install -r backend/requirements.lock
 npm --prefix app test
 ```
 
-Ne lancer `npm update` qu’à l’occasion d’une évolution volontaire des dépendances, suivie de tests et d’un audit de licences. Pour une nouvelle version, mettre à jour package.json, package-lock.json, versionName et versionCode Android, les notes et le manifeste de données.
+Ne lancer `npm update` qu’à l’occasion d’une évolution volontaire des dépendances, suivie de tests et d’un audit de licences. Pour une nouvelle version, mettre à jour package.json, package-lock.json, versionCode Android (versionName et le visuel de démarrage sont générés depuis package.json), les notes et le manifeste de données.
 
 ## Vérifier les téléchargements
 

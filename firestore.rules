@@ -301,6 +301,26 @@ service cloud.firestore {
       allow update: if false;
       allow delete: if signed() && request.auth.uid == uid;
     }
+    // Sauvegarde personnelle : aucun autre compte, même administrateur, ne lit le portrait.
+    match /members/{uid}/private/profile {
+      function stats(s) { return s is map && s.keys().hasOnly(['added','edited']) && s.added is int && s.edited is int && s.added >= 0 && s.edited >= 0 && s.added <= 1000000 && s.edited <= 1000000; }
+      function valid() {
+        let d=request.resource.data;
+        return d.keys().hasOnly(['version','legacy','devices','avatar','device','updated']) && d.version == 1
+          && stats(d.legacy) && d.device is string && d.device.matches('[A-Za-z0-9_-]{1,64}')
+          && d.devices is map && d.devices.size() <= 100 && stats(d.devices[d.device])
+          && (d.avatar == null || (d.avatar is string && d.avatar.size() <= 55000 && d.avatar.matches('data:image/(jpeg|webp);base64,[A-Za-z0-9+/=]+')))
+          && d.updated == request.time;
+      }
+      allow get: if signed() && request.auth.uid == uid;
+      allow create: if signed() && request.auth.uid == uid && exists(memberPath()) && valid() && request.resource.data.devices.keys().hasOnly([request.resource.data.device]);
+      allow update: if signed() && request.auth.uid == uid && exists(memberPath()) && valid()
+        && request.resource.data.devices.diff(resource.data.devices).affectedKeys().hasOnly([request.resource.data.device])
+        && request.resource.data.legacy.added >= resource.data.legacy.added && request.resource.data.legacy.edited >= resource.data.legacy.edited
+        && request.resource.data.devices[request.resource.data.device].added >= resource.data.devices.get(request.resource.data.device, {'added':0,'edited':0}).added
+        && request.resource.data.devices[request.resource.data.device].edited >= resource.data.devices.get(request.resource.data.device, {'added':0,'edited':0}).edited;
+      allow delete: if signed() && request.auth.uid == uid;
+    }
     match /members/{uid}/favorites/{id} {
       allow get, list: if signed() && request.auth.uid == uid;
       allow create, update: if signed() && request.auth.token.get('firebase', {}).get('sign_in_provider', '') != 'anonymous' && request.auth.uid == uid && id.size() <= 160

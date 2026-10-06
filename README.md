@@ -6,7 +6,7 @@ Quand on devient parent, même une petite sortie peut demander un peu d’organi
 
 Application Android et interface web entièrement en français, avec carte, liste et thèmes jour/nuit. Le code est ouvert et la première bêta publique attend vos retours.
 
-[**Télécharger la bêta Android**](https://github.com/AntoineViallefont/Cailloute/releases/tag/v0.1.63-beta.1) · [**Devenir testeur**](https://github.com/AntoineViallefont/Cailloute/issues/new?template=testeur.yml) · [Signaler un problème](https://github.com/AntoineViallefont/Cailloute/issues/new?template=probleme.yml)
+[**Télécharger la bêta Android**](https://github.com/AntoineViallefont/Cailloute/releases/tag/v0.1.64-beta.1) · [**Devenir testeur**](https://github.com/AntoineViallefont/Cailloute/issues/new?template=testeur.yml) · [Signaler un problème](https://github.com/AntoineViallefont/Cailloute/issues/new?template=probleme.yml)
 
 ## Ce que vous pouvez faire
 
@@ -29,7 +29,7 @@ Captures réelles de l’application exécutée dans un environnement de test is
 
 ## Installer ou mettre à jour
 
-1. Ouvrez la [page de la bêta](https://github.com/AntoineViallefont/Cailloute/releases/tag/v0.1.63-beta.1) et téléchargez `Cailloute-0.1.63-beta.apk` sur votre téléphone.
+1. Ouvrez la [page de la bêta](https://github.com/AntoineViallefont/Cailloute/releases/tag/v0.1.64-beta.1) et téléchargez `Cailloute-0.1.64-beta.apk` sur votre téléphone.
 2. Android **9 ou plus récent** est nécessaire, sur appareil ARM 32 ou 64 bits. Autorisez l’installation depuis le navigateur ou le gestionnaire de fichiers uniquement si Android le demande pour ce fichier.
 3. Ouvrez l’APK et choisissez **Installer** ou **Mettre à jour**. Pour conserver vos données, **ne désinstallez pas** l’application existante et n’effacez pas son stockage.
 

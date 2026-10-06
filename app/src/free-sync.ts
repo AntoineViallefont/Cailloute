@@ -1,3 +1,4 @@
+import {syncAccountBackup} from './account-backup';
 import Dexie from "dexie";
 import {AdminLive} from "./admin-live";
 import { convertPhotoUrl } from "./photo-input";
@@ -171,6 +172,7 @@ export function runFreeSync(): Promise<void> {
     freeSyncState.message = !freeCollaborationEnabled ? "Partage désactivé." : offlineMap() ? "Connexion Internet indisponible." : "Application considérée en arrière-plan : revenez dans l’application.";
     notify();return Promise.resolve();
   }
+  void syncAccountBackup();
   const account=getFreeSession();
   if(!account?.isAdmin)stopAdminLive();
   else if(adminOwner!==account.uid){

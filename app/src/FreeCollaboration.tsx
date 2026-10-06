@@ -13,7 +13,7 @@ import { loginFreeGoogle, freeCollaborationEnabled, getFreeSession, subscribeFre
 import { runFreeSync, retryFreeContributions, freeSyncState, discardFreeOperation } from "./free-sync";
 import { FREE_TERMS_VERSION } from "./free-policy";
 
-export function FreeCollaboration({initialOpen=false,initialCreate=false}: {initialOpen?:boolean;initialCreate?:boolean}) {
+export function FreeCollaboration({initialOpen=false,initialCreate=false,onClose}: {initialOpen?:boolean;initialCreate?:boolean;onClose?:()=>void}) {
   const {ask,confirmation}=useConfirmation();
   const [account, setAccount] = useState(getFreeSession());
   const [open, setOpen] = useState(initialOpen), [create, setCreate] = useState(initialCreate);
@@ -37,7 +37,7 @@ export function FreeCollaboration({initialOpen=false,initialCreate=false}: {init
     setBusy(true); setMessage("");
     try { await action(); } catch (error) { setMessage((error as Error).message); } finally { setBusy(false); }
   }
-  return <section className="free-collaboration">{confirmation}
+  const content=<section className="free-collaboration">{confirmation}
     <h2>Connexion et contributions</h2>
     <p className="muted">{account ? `${account.displayName} · ${account.verified ? "compte vérifié" : "e-mail à vérifier"}` : "Sans compte : consultation et signalement uniquement."}</p>
     {account && <FreeModerationStatus account={account} />}
@@ -61,7 +61,7 @@ export function FreeCollaboration({initialOpen=false,initialCreate=false}: {init
     </>}
     {pending.length > own.length && <small>Des envois d’un autre compte restent conservés sur cet appareil.</small>}
     {message && <p role="status">{message}</p>}
-    {open && <Modal title={create ? "Créer un compte" : "Se connecter"} onClose={() => setOpen(false)}><form className="form" onSubmit={e => { e.preventDefault(); void attempt(async () => { if (create && password !== confirmPassword) throw new Error("Les mots de passe ne correspondent pas."); if (create) await registerFreeAccount(email, password, name, agreed); else await loginFreeAccount(email, password); setPassword(""); setOpen(false); }); }}>
+    {open && <Modal title={create ? "Créer un compte" : "Se connecter"} onClose={() => {setOpen(false);onClose?.();}}><form className="form" onSubmit={e => { e.preventDefault(); void attempt(async () => { if (create && password !== confirmPassword) throw new Error("Les mots de passe ne correspondent pas."); if (create) await registerFreeAccount(email, password, name, agreed); else await loginFreeAccount(email, password); setPassword(""); setOpen(false); }); }}>
       <p>Un compte permet de publier des avis, contribuer, voter et retrouver vos favoris sur tous vos appareils. La consultation reste libre.</p>
       <button type="button" className="secondary" disabled={busy} onClick={()=>void attempt(async()=>{await loginFreeGoogle();setOpen(false);})}>Continuer avec Google</button>
       <label>E-mail<input type="email" required autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} /></label>
@@ -73,6 +73,7 @@ export function FreeCollaboration({initialOpen=false,initialCreate=false}: {init
     </form></Modal>}
     {admin && account?.isAdmin && <FreeModeration onClose={() => setAdmin(false)} />}
   </section>;
+  return onClose && !open ? <Modal title="Mon compte" onClose={onClose}>{content}</Modal> : content;
 }
 
 export function FreeDataStatus() {

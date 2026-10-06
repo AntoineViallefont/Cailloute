@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+// Une seule version pour Android, le profil et l’écran de démarrage.
+def caillouteVersion = new groovy.json.JsonSlurper().parse(file('../../package.json')).version
+
 android {
     testBuildType project.findProperty("caillouteTestBuildType") ?: "debug"
     buildFeatures { buildConfig true }
@@ -10,8 +13,8 @@ android {
         applicationId "fr.cailloute.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 64
-        versionName "0.1.63"
+        versionCode 65
+        versionName caillouteVersion
         buildConfigField "boolean", "PERSONAL_MODE", (project.findProperty("cailloutePersonalMode") ?: "true")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -63,3 +66,15 @@ try {
 } catch(Exception e) {
     logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
 }
+
+// Le visuel natif est prêt avant le lancement du processus Android.
+tasks.register('generateLaunchBranding', Exec) {
+    def generator = file('../../../scripts/LaunchBranding.java')
+    def branding = file('src/main/res/drawable/cailloute_launch_branding.xml')
+    inputs.file(generator)
+    inputs.property('version', caillouteVersion)
+    outputs.file(branding)
+    commandLine new File(System.getProperty('java.home'), 'bin/java').absolutePath,
+        generator.absolutePath, branding.absolutePath, caillouteVersion
+}
+tasks.named('preBuild').configure { dependsOn 'generateLaunchBranding' }

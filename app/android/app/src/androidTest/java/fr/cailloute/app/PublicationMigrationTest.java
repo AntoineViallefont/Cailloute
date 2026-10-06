@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import static org.junit.Assert.*;
 
-/** Vérifie les données fictives préalablement insérées dans l'APK 0.1.62. */
+/** Vérifie les données fictives conservées lors des mises à jour successives. */
 @RunWith(AndroidJUnit4.class)
 public class PublicationMigrationTest {
     private String evaluate(Instrumentation instrumentation, WebView web, String expression) throws Exception {
@@ -48,6 +48,7 @@ public class PublicationMigrationTest {
         for (String label : new String[]{"Profil", "Favoris", "Carte"}) {
             assertEquals("true", evaluate(instrumentation, web, "(()=>{const b=[...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='"+label+"');if(!b)return false;b.click();return true;})()"));
             Thread.sleep(400);
+            if (label.equals("Profil")) assertEquals("true", evaluate(instrumentation, web, "document.body.textContent.includes('version " + BuildConfig.VERSION_NAME + "')"));
         }
         assertEquals("true", evaluate(instrumentation, web, "!!document.querySelector('.leaflet-container')"));
         activity.finish();

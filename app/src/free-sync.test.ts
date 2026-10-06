@@ -8,6 +8,7 @@ const f = vi.hoisted(() => {
   const db = { catalogSources:table(),sourceRevisions:table(),meta: table(), places: table(), personal: table(), details: table(), removed: table(), favorites: table(), freeQueue: table(), transaction: async (...args: any[]) => args.at(-1)() };
   return { db, account: { uid: "alice", verified: true, termsAccepted: true, blocked: false } as any, watch: vi.fn(), watchPlace:vi.fn(), push: vi.fn(), fetch: vi.fn(), previews: vi.fn(), notify: vi.fn() };
 });
+vi.mock("./account-backup", () => ({syncAccountBackup:vi.fn(async()=>{})}));
 vi.mock("./store", () => ({ db: f.db, notify: f.notify }));
 vi.mock("./free-cloud", () => ({ freeCollaborationEnabled: true, accountDeletionInProgress:()=>false, getFreeSession: () => f.account, freeReadsLeft:async()=>{const {automaticReadsLeft}=await import('./cloud-budget');return automaticReadsLeft(f.account?.isAdmin?'admin':'automatic');}, watchFreePlace:f.watchPlace, watchFreeChanges: f.watch, pushFreeOperation: f.push, fetchFreeChanges: f.fetch, fetchFreePreviewPage: async()=>({photos:await f.previews(),cursor:{source:1},hasMore:false}), syncFreePrivateDecisions: vi.fn(async()=>0) }));
 vi.mock("./free-policy", () => ({ sharedCells: () => ["180:20"] }));
@@ -470,4 +471,9 @@ it('un retour sans contribution ni zone périmée ne relit pas le serveur et ne 
  await runFreeSync();f.fetch.mockClear();f.push.mockClear();f.notify.mockClear();
  await runFreeSync();
  expect(f.fetch).not.toHaveBeenCalled();expect(f.push).not.toHaveBeenCalled();expect(f.notify).not.toHaveBeenCalled();
+});
+
+it("enregistrer une fiche inchangée partage aussi sa validation locale",()=>{
+ const operation=shareableFreeOperation({...edit(),payload:{name:place.name}},place,place);
+ expect(operation?.kind).toBe('place.validate');expect(operation?.payload).toEqual({value:true});
 });
