@@ -1,0 +1,22 @@
+---
+place_id: 79373161
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 4801930
+lat: '43.27551236087614'
+lon: '-5.851474822001241'
+display_name: Carretera Gijón/Xixón - Sevilla (Ruta de la plata), La Vega San Pedro, Mieres, Asturias, 33162, España
+address:
+  city: Mieres
+  country: España
+  country_code: es
+  county: Asturias
+  hamlet: La Vega San Pedro
+  postcode: '33162'
+  road: Carretera Gijón/Xixón - Sevilla (Ruta de la plata)
+  state: Asturias
+boundingbox:
+  - '43.2754533'
+  - '43.2759736'
+  - '-5.8522986'
+  - '-5.8513766'

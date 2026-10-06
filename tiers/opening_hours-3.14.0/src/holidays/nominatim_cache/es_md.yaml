@@ -1,0 +1,25 @@
+---
+place_id: 162179775
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 312814403
+lat: '40.52270186738077'
+lon: '-3.77403206228544'
+display_name: Carretera Colmenar Viejo, El Pardo, Fuencarral-El Pardo, Madrid, Área metropolitana de Madrid y Corredor del
+  Henares, Comunidad de Madrid, 28001, España
+address:
+  city: Madrid
+  city_district: Fuencarral-El Pardo
+  country: España
+  country_code: es
+  county: Comunidad de Madrid
+  municipality: Área metropolitana de Madrid y Corredor del Henares
+  postcode: '28001'
+  road: Carretera Colmenar Viejo
+  state: Comunidad de Madrid
+  suburb: El Pardo
+boundingbox:
+  - '40.5186346'
+  - '40.5308416'
+  - '-3.7811732'
+  - '-3.7733223'

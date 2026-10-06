@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: © 2013 Robin Schneider <ypid@riseup.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+export*
+
+# Enable the following line for repositories which should track statistical data.
+# !export♡*♡stats.csv
+
+*.csv
+
+!package-lock.json
+
+## Neko bytecode
+*.n
+
+!taginfo.json
+!taginfo_template.json
+!uglifyjs.log
+
+build
+node_modules
+tags
+README.html
+tmp_query*
+lockfile_*
+taginfo_sources.json

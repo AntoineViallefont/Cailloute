@@ -1,0 +1,25 @@
+---
+place_id: 284931130
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 407438298
+lat: '41.38105405'
+lon: '-0.7618448857673266'
+display_name: Omya Clariana S.L., Belchite, A-222, Pueblo viejo de Belchite, Belchite, Campo de Belchite, Zaragoza, Aragón,
+  50130, España
+address:
+  address29: Omya Clariana S.L., Belchite
+  country: España
+  country_code: es
+  municipality: Campo de Belchite
+  postcode: '50130'
+  province: Zaragoza
+  road: A-222
+  state: Aragón
+  suburb: Pueblo viejo de Belchite
+  town: Belchite
+boundingbox:
+  - '41.3792882'
+  - '41.3820792'
+  - '-0.7641287'
+  - '-0.759672'

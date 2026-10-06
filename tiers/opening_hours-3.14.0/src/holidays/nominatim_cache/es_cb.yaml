@@ -1,0 +1,21 @@
+---
+place_id: 13303663
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: node
+osm_id: 1242931946
+lat: '43.1327424'
+lon: '-4.2624154'
+display_name: Campucas, Los Tojos, Saja-Nansa, Cantabria, 39517, España
+address:
+  city: Los Tojos
+  country: España
+  country_code: es
+  locality: Campucas
+  municipality: Saja-Nansa
+  postcode: '39517'
+  state: Cantabria
+boundingbox:
+  - '43.1127424'
+  - '43.1527424'
+  - '-4.2824154'
+  - '-4.2424154'

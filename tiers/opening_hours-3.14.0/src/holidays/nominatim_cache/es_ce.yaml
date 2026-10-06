@@ -1,0 +1,22 @@
+---
+place_id: 180477570
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 413029356
+lat: '35.895525'
+lon: '-5.354947'
+display_name: Cortafuegos del Renegado, Barriada Postigo, Puente del Quemadero, Ceuta, 51002, España
+address:
+  city: Ceuta
+  country: España
+  country_code: es
+  neighbourhood: Barriada Postigo
+  path: Cortafuegos del Renegado
+  postcode: '51002'
+  state: Ceuta
+  suburb: Puente del Quemadero
+boundingbox:
+  - '35.8952771'
+  - '35.898652'
+  - '-5.360432'
+  - '-5.3541136'

@@ -1,0 +1,22 @@
+---
+place_id: 96263413
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 32607327
+lat: '39.614623234326636'
+lon: '2.881327711268051'
+display_name: camí de Cas Cabo, Sancellas, Pla de Mallorca, Islas Baleares, 07210, España
+address:
+  country: España
+  country_code: es
+  county: Islas Baleares
+  municipality: Pla de Mallorca
+  postcode: '07210'
+  road: camí de Cas Cabo
+  state: Islas Baleares
+  village: Sancellas
+boundingbox:
+  - '39.6113337'
+  - '39.6173152'
+  - '2.8776596'
+  - '2.8859205'

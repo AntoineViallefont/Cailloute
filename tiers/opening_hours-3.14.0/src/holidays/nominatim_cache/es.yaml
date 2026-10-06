@@ -1,0 +1,22 @@
+---
+place_id: 133575698
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 197658068
+lat: '41.603324341770154'
+lon: '2.189017561747998'
+display_name: Camí Creu de Baduell, Palau-solità i Plegamans, Vallés Occidental, Barcelona, Cataluña, 08184, España
+address:
+  country: España
+  country_code: es
+  # county: Barcelona
+  # municipality: Vallés Occidental
+  # postcode: 08184
+  # road: Camí Creu de Baduell
+  # state: Cataluña
+  # village: Palau-solità i Plegamans
+boundingbox:
+  - '41.5944673'
+  - '41.6065014'
+  - '2.1879386'
+  - '2.1921028'

@@ -12,7 +12,7 @@ La liaison restrictive React Leaflet a été remplacée par une intégration ori
 - Leaflet et SunCalc : BSD-2-Clause ; Supercluster et Lucide : ISC.
 - Firebase, Dexie et composants AndroidX : Apache-2.0.
 - Manrope : SIL Open Font License 1.1.
-- `opening_hours` : LGPL-3.0-only pour le moteur, avec licences de données internes décrites par son dossier LICENSES/REUSE. Le paquet source complet et inchangé est conservé sous `tiers/opening_hours-3.14.0/`. Il est possible de le modifier et de reconstruire l’application selon COMPILER.md ; aucune interdiction d’ingénierie inverse nécessaire au débogage de ses modifications n’est ajoutée.
+- `opening_hours` : LGPL-3.0-only pour le moteur, avec licences de données internes décrites par son dossier LICENSES/REUSE. Les sources amont exactes et les fichiers du paquet npm inchangé sont conservés sous `tiers/opening_hours-3.14.0/`. Il est possible de le modifier et de reconstruire l’application selon COMPILER.md ; aucune interdiction d’ingénierie inverse nécessaire au débogage de ses modifications n’est ajoutée.
 - YuNet : MIT, Shiqi Yu. Poids et licence dans `app/public/photo-privacy/`.
 - Google Play services (connexion Google et localisation native) : composants propriétaires sous [conditions du SDK Android](https://developer.android.com/studio/terms). Ils ne deviennent pas MIT. Le code original est ouvert, mais l’APK officiel et ses services ne constituent pas un ensemble entièrement libre. Le SDK de développement lui-même n’est pas redistribué. Les notices Android sont conservées dans `tiers/licences-android.txt`, accessibles aussi depuis les informations de l’application.
 - Dépendances Python : licences propres aux paquets verrouillés, notices dans `tiers/licences-python.txt`.

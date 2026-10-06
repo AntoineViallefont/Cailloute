@@ -1,0 +1,21 @@
+---
+place_id: 186937813
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 442341537
+lat: '39.41486877016525'
+lon: '-2.625366299827695'
+display_name: N-301, El Provencio, Cuenca, Castilla-La Mancha, 16670, España
+address:
+  country: España
+  country_code: es
+  county: Cuenca
+  postcode: '16670'
+  road: N-301
+  state: Castilla-La Mancha
+  village: El Provencio
+boundingbox:
+  - '39.3774723'
+  - '39.4426533'
+  - '-2.667175'
+  - '-2.5694658'

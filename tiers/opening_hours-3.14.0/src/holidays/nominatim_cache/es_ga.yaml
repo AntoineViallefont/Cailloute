@@ -1,0 +1,22 @@
+---
+place_id: 118850241
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 142181655
+lat: '42.6185094'
+lon: '-7.864985'
+display_name: Fontela, Chantada, Lugo, Galicia, 27513, España
+address:
+  city: Chantada
+  country: España
+  country_code: es
+  county: Chantada
+  hamlet: Fontela
+  postcode: '27513'
+  province: Lugo
+  state: Galicia
+boundingbox:
+  - '42.6121986'
+  - '42.6239369'
+  - '-7.8741729'
+  - '-7.8648513'

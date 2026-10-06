@@ -1,0 +1,22 @@
+---
+place_id: '227339485'
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: '587745585'
+lat: '45.812984650000004'
+lon: '15.977982624964788'
+display_name: Manduševac, Trg bana Josipa Jelačića, Mjesni odbor "August Cesarec", Gradska četvrt Gornji grad - Medveščak, Zagreb, Grad Zagreb, 10106, Hrvatska
+address:
+#  amenity: Manduševac
+#  road: Trg bana Josipa Jelačića
+#  neighbourhood: Mjesni odbor "August Cesarec"
+#  suburb: Gradska četvrt Gornji grad - Medveščak
+#  city: Zagreb
+#  postcode: 10106
+  country: Hrvatska
+  country_code: hr
+boundingbox:
+  - '45.8129649'
+  - '45.8130084'
+  - '15.9779515'
+  - '15.9780137'

@@ -1,0 +1,17 @@
+---
+place_id: 299366672
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: node
+osm_id: 3815077900
+lat: '0'
+lon: '0'
+display_name: Soul Buoy
+address: {
+  country_code: xa
+}
+  # man_made: Soul Buoy
+boundingbox:
+  - '-5.0E-5'
+  - '5.0E-5'
+  - '-5.0E-5'
+  - '5.0E-5'

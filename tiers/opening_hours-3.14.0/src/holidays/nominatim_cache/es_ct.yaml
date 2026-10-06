@@ -1,0 +1,23 @@
+---
+place_id: 124669823
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 159512233
+lat: '41.850051'
+lon: '1.5757213'
+display_name: Camí de Pinós a Matamargó, les Cases de Matamargó, Pinós, Solsonés, Lérida, Cataluña, 08269, España
+address:
+  country: España
+  country_code: es
+  county: Lérida
+  municipality: Solsonés
+  postcode: 08269
+  road: Camí de Pinós a Matamargó
+  state: Cataluña
+  suburb: les Cases de Matamargó
+  village: Pinós
+boundingbox:
+  - '41.8434182'
+  - '41.8621'
+  - '1.5523'
+  - '1.6079783'

@@ -1,0 +1,22 @@
+---
+place_id: 225079060
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 694071872
+lat: '38.0660077'
+lon: '-1.6710268'
+display_name: El Cabezo, Bullas, Noroeste, Región de Murcia, 30180, España
+address:
+  country: España
+  country_code: es
+  county: Región de Murcia
+  municipality: Noroeste
+  postcode: '30180'
+  state: Región de Murcia
+  suburb: El Cabezo
+  town: Bullas
+boundingbox:
+  - '38.0619676'
+  - '38.0669325'
+  - '-1.6726938'
+  - '-1.6624704'

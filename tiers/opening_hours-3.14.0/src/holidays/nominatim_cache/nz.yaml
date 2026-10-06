@@ -1,0 +1,23 @@
+---
+place_id: 80915542
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 5181977
+lat: '-41.29222820634521'
+lon: '174.77630801533115'
+display_name: Cuba Mall, Mitchelltown, Te Aro, Wellington, Wellington City, Wellington, 6011, New Zealand
+address:
+  country: New Zealand
+  country_code: nz
+  # city: Wellington
+  # county: Wellington City
+  # neighbourhood: Mitchelltown
+  # postcode: 6011
+  # road: Cuba Mall
+  # state: Wellington
+  # suburb: Te Aro
+boundingbox:
+  - '-41.2932647'
+  - '-41.2912136'
+  - '174.7757249'
+  - '174.7768907'

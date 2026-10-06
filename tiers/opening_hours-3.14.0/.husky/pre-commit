@@ -1,0 +1,13 @@
+#!/bin/sh
+# SPDX-FileCopyrightText: © opening_hours.js contributors
+# SPDX-License-Identifier: CC0-1.0
+
+# # Redirect output to stderr.
+# exec 1>&2
+
+# Run lint-staged to auto-fix issues (including trailing whitespace) on staged files
+npx lint-staged
+
+# Run checks
+make check
+reuse lint

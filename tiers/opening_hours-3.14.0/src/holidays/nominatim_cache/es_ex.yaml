@@ -1,0 +1,22 @@
+---
+place_id: 164039407
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 325080788
+lat: '39.176432925851394'
+lon: '-6.152348544422519'
+display_name: CC-117, Arroyomolinos, Sierra de Montánchez, Cáceres, Extremadura, 10170, España
+address:
+  country: España
+  country_code: es
+  county: Cáceres
+  municipality: Sierra de Montánchez
+  postcode: '10170'
+  road: CC-117
+  state: Extremadura
+  village: Arroyomolinos
+boundingbox:
+  - '39.1674667'
+  - '39.1888432'
+  - '-6.1680286'
+  - '-6.0478764'

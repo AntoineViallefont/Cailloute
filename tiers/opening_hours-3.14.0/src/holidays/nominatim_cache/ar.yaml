@@ -1,0 +1,22 @@
+---
+place_id: 282739669
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: relation
+osm_id: 4554665
+lat: '-34.603753499999996'
+lon: '-58.381434382119664'
+display_name: Microcentro, San Nicolás, Buenos Aires, Ciudad Autónoma de Buenos Aires, Argentina
+address:
+  country: Argentina
+  country_code: ar
+  # ISO3166-2-lvl4: AR-C
+  # ISO3166-2-lvl8: AR-C
+  # city: Buenos Aires
+  # neighbourhood: Microcentro
+  # state: Ciudad Autónoma de Buenos Aires
+  # suburb: San Nicolás
+boundingbox:
+  - '-34.6038253'
+  - '-34.6036797'
+  - '-58.3818804'
+  - '-58.381306'

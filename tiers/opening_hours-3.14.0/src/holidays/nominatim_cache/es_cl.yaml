@@ -1,0 +1,21 @@
+---
+place_id: 91709774
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 24906726
+lat: '41.802204265262084'
+lon: '-4.752778177150476'
+display_name: VP-4000, Cigales, Valladolid, Castilla y León, 47270, España
+address:
+  country: España
+  country_code: es
+  county: Valladolid
+  postcode: '47270'
+  road: VP-4000
+  state: Castilla y León
+  village: Cigales
+boundingbox:
+  - '41.7616726'
+  - '41.8237842'
+  - '-4.7698416'
+  - '-4.7017642'

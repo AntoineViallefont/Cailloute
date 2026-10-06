@@ -1,0 +1,20 @@
+---
+place_id: 286599923
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: relation
+osm_id: 5392189
+lat: '28.2935785'
+lon: '-16.621447121144122'
+display_name: Canarias, La Orotava, Santa Cruz de Tenerife, Canarias, España
+address:
+  address29: Canarias
+  city: La Orotava
+  country: España
+  country_code: es
+  county: Santa Cruz de Tenerife
+  state: Canarias
+boundingbox:
+  - '27.6377389'
+  - '29.4160647'
+  - '-18.1608733'
+  - '-13.3320145'

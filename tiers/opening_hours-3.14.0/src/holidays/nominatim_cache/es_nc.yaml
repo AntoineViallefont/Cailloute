@@ -1,0 +1,21 @@
+---
+place_id: 13412249
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: node
+osm_id: 1243157186
+lat: '42.6101354'
+lon: '-1.8309139'
+display_name: La Corona, Mendigorría, Navarra, 31150, España
+address:
+  country: España
+  country_code: es
+  county: Navarra
+  locality: La Corona
+  postcode: '31150'
+  state: Navarra
+  village: Mendigorría
+boundingbox:
+  - '42.5901354'
+  - '42.6301354'
+  - '-1.8509139'
+  - '-1.8109139'

@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: © opening_hours.js contributors
+# SPDX-License-Identifier: ODbL-1.0
+---
+
+_nominatim_url: 'https://nominatim.openstreetmap.org/reverse?format=json&lat=35.39291572&lon=139.44288869&zoom=18&addressdetails=1&accept-language=ja,en'
+
+PH:  # https://www8.cao.go.jp/chosei/shukujitsu/gaiyou.html | https://ja.wikipedia.org/wiki/%E5%9B%BD%E6%B0%91%E3%81%AE%E7%A5%9D%E6%97%A5
+  - {'name': '元日', 'fixed_date': [1, 1]}
+  - {'name': '成人の日', 'variable_date': firstJanuaryMonday, 'offset': 7}
+  - {'name': '建国記念の日', 'fixed_date': [2, 11]}
+  - {'name': '天皇誕生日', 'fixed_date': [2, 23]}
+  - {'name': '昭和の日', 'fixed_date': [4, 29]}
+  - {'name': '憲法記念日', 'fixed_date': [5, 3]}
+  - {'name': 'みどりの日', 'fixed_date': [5, 4]}
+  - {'name': 'こどもの日', 'fixed_date': [5, 5]}
+  - {'name': '海の日', 'variable_date': firstJulyMonday, 'offset': 14}
+  - {'name': '山の日', 'fixed_date': [8, 11]}
+  - {'name': '敬老の日', 'variable_date': firstSeptemberMonday, 'offset': 14}
+  - {'name': 'スポーツの日', 'variable_date': firstOctoberMonday, 'offset': 7}
+  - {'name': '文化の日', 'fixed_date': [11, 3]}
+  - {'name': '勤労感謝の日', 'fixed_date': [11, 23]}
+
+  # The following holidays are selected based on astronomical observations, so the dates may differ slightly from actual holidays. Also the dates
+  # below are calculated automatically.
+  # https://www.nao.ac.jp/faq/a0301.html (Japanese) "Is it possible to know the date of the autumnal equinox and autumnal equinox in XX years from now?"
+  - {'name': '春分の日', 'variable_date': springEquinox}
+  - {'name': '秋分の日', 'variable_date': autumnalEquinox}

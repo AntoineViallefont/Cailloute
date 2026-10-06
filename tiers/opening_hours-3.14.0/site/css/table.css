@@ -1,0 +1,263 @@
+/*
+ * SPDX-FileCopyrightText: © 2013 Robin Schneider <ypid@riseup.net>
+ * SPDX-FileCopyrightText: © 2016 Michael Knight <https://github.com/dex2000>
+ * SPDX-FileCopyrightText: © 2020 Kristjan ESPERANTO <https://github.com/KristjanESPERANTO>
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ *
+ * This file is based on work under the following copyright and
+ * BSD-2-Clause permission notice:
+ *
+ *     SPDX-FileCopyrightText: © 2012 Dmitry Marakasov <amdmi3@amdmi3.ru>
+ *     All rights reserved.
+ *
+ *     Redistribution and use in source and binary forms, with or without
+ *     modification, are permitted provided that the following conditions are met:
+ *
+ *     1. Redistributions of source code must retain the above copyright notice, this
+ *     list of conditions and the following disclaimer.
+ *
+ *     2. Redistributions in binary form must reproduce the above copyright notice,
+ *     this list of conditions and the following disclaimer in the documentation
+ *     and/or other materials provided with the distribution.
+ *
+ *     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ *     ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ *     WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ *     DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ *     FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ *     DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ *     SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ *     CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ *     OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ *     OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+:root {
+    --table-bg: #E0E0E0;
+    --table-workday: #cf9;
+    --table-weekend: #fc9;
+    --table-open: rgba(255, 255, 255, 0.85);
+    --table-unknown: rgba(100, 180, 150, 0.85);
+    --table-closed: rgba(224, 224, 224, 0.85);
+    --table-border: white;
+    --table-text-open: #4a0;
+    --table-text-unknown: #94d7b3;
+    --table-text-closed: #a40;
+    --table-now-marker: #e53935;
+    --table-scale-text: #666;
+}
+
+body[data-theme="dark"] {
+    --table-bg: #3a3a3a;
+    --table-workday: #4a6b3a;
+    --table-weekend: #6b5a3a;
+    --table-open: rgba(80, 180, 80, 0.3);
+    --table-unknown: rgba(100, 140, 180, 0.3);
+    --table-closed: rgba(60, 60, 60, 0.3);
+    --table-border: #555;
+    --table-text-open: #7cb342;
+    --table-text-unknown: #64b5f6;
+    --table-text-closed: #ff8a65;
+    --table-now-marker: #ff5252;
+    --table-scale-text: #aaa;
+}
+
+@media (prefers-color-scheme: dark) {
+    body:not([data-theme]) {
+        --table-bg: #3a3a3a;
+        --table-workday: #4a6b3a;
+        --table-weekend: #6b5a3a;
+        --table-open: rgba(80, 180, 80, 0.3);
+        --table-unknown: rgba(100, 140, 180, 0.3);
+        --table-closed: rgba(60, 60, 60, 0.3);
+        --table-border: #fff;
+        --table-text-open: #7cb342;
+        --table-text-unknown: #64b5f6;
+        --table-text-closed: #ff8a65;
+        --table-now-marker: #ff5252;
+        --table-scale-text: #aaa;
+    }
+}
+
+/* Opening hours table */
+.opening-hours-table {
+    width: 100%;
+    border-collapse: separate;
+    line-height: 1;
+    border-spacing: 0;
+}
+
+.opening-hours-table td {
+    border-right: 2px solid var(--table-border);
+    border-bottom: 2px solid var(--table-border);
+}
+
+.opening-hours-table tr:last-child td {
+    border-bottom: none;
+}
+
+.opening-hours-table td:last-child {
+    border-right: none;
+}
+
+/* Time scale header row */
+tr.time-scale td {
+    background: transparent;
+    padding: 0;
+    border: none;
+}
+
+tr.time-scale td:first-child {
+    width: 8em;
+}
+
+tr.time-scale td:nth-child(2) {
+    min-width: 300px;
+    max-width: 60%;
+    width: auto;
+    padding: 0 2px;
+}
+
+.scale-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    font-size: 0.75em;
+    color: var(--table-scale-text);
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.scale-labels span {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.scale-labels span:first-child {
+    margin-left: -8px;
+}
+
+.scale-labels span:last-child {
+    margin-right: -12px;
+}
+
+/* Day column with weekday + date */
+td.day {
+    white-space: nowrap;
+    width: 8em;
+    padding: 4px 0.5em;
+}
+
+td.day .weekday {
+    float: left;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+td.day .date {
+    float: right;
+    font-size: 0.9em;
+    opacity: 0.85;
+}
+
+tr.today td.day {
+    font-weight: bold;
+}
+
+tr.today td.day .weekday {
+    text-decoration: underline;
+}
+td {
+    background: var(--table-bg);
+    padding: 4px 0;
+}
+td.workday { background: var(--table-workday); }
+td.weekend { background: var(--table-weekend); }
+td.times {
+    min-width: 300px;
+    width: auto;
+    background: var(--table-bg) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAAeCAYAAAD0O81IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAEBSURBVHja7NWxDQAgDAOw9P+jw8YJCIEHrxkaVUnbAABnOQIAGGAAMMAAgAEGAAMMABhgAPh4gGem8i7JS7q5n37dT7/6uCrPAHtg99OvPvQrzwDL88Dy9CtPvwbYAT2wPvQrT7/yDLA8DyxPv/p1PwPsgB5Ynn7l6VeeAZbngfXrfvp1PwOsEA8sT7/y9CvPAHtgD6xf99OvPgywPA8sT7/y9CvPAHtg99OvPvQrzwDL88Dy9CtPvwbYAT2wPvQrT7/yDLA8DyxPv/p1PwPsgB5Ynn7l6VeeAZbngfXrfvp1PwMMABhgADDAAIABBgADDAAGGAAwwADwogUAAP//AwD7Ihe8uFAOdQAAAABJRU5ErkJggg==) no-repeat center left / 100% 80%;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+/* Description column */
+td.description {
+    font-size: 0.9em;
+    padding-left: 0.3em;
+}
+
+div.timebar {
+    height: 20px;
+    display: inline-block;
+    flex: none; /* Don't grow or shrink - use exact width */
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+    box-sizing: border-box; /* Include border in width calculation */
+}
+
+div.timebar:hover {
+    opacity: 0.8;
+}
+div.open {
+    background: var(--table-open);
+    border: 1px solid #222;
+    border-radius: 4px;
+}
+div.unknown {
+    background: var(--table-unknown);
+    border: 1px solid var(--table-border);
+    border-radius: 5px;
+}
+div.closed {
+    background: var(--table-closed);
+    border-top: 2px solid var(--table-bg);
+    border-bottom: 2px solid var(--table-bg);
+}
+
+/* Now marker - vertical line showing current time */
+.now-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--table-now-marker);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.now-marker::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: -3px;
+    width: 8px;
+    height: 8px;
+    background: var(--table-now-marker);
+    border-radius: 50%;
+}
+
+p.open        { color: var(--table-text-open); }
+p.unknown     { color: var(--table-text-unknown); }
+p.closed      { color: var(--table-text-closed); }
+span.oh-times { background: #88ccff; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    td.times,
+    tr.time-scale td:nth-child(2) {
+        width: 200px;
+    }
+
+    td.description {
+        display: none;
+    }
+
+    .scale-labels {
+        font-size: 0.65em;
+    }
+}

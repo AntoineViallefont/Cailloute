@@ -1,0 +1,21 @@
+---
+place_id: 13523183
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: node
+osm_id: 1243421510
+lat: '39.6895787'
+lon: '-0.7606594'
+display_name: Alto de Zalagardos, Casinos, El Campo de Turia, Valencia, Comunidad Valenciana, España
+address:
+  country: España
+  country_code: es
+  county: Valencia
+  locality: Alto de Zalagardos
+  region: El Campo de Turia
+  state: Comunidad Valenciana
+  village: Casinos
+boundingbox:
+  - '39.6695787'
+  - '39.7095787'
+  - '-0.7806594'
+  - '-0.7406594'

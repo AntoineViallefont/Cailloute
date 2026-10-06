@@ -1,0 +1,24 @@
+---
+place_id: 154288643
+licence: Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type: way
+osm_id: 284445415
+lat: '42.9943585'
+lon: '-2.5571286'
+display_name: GI-627, Puerto de Salinas de Léniz/Leintz-Gatzaga, Salinas de Léniz, Alto Deva, Guipúzcoa, País Vasco, 20530,
+  España
+address:
+  country: España
+  country_code: es
+  hamlet: Puerto de Salinas de Léniz/Leintz-Gatzaga
+  municipality: Alto Deva
+  postcode: '20530'
+  province: Guipúzcoa
+  road: GI-627
+  state: País Vasco
+  village: Salinas de Léniz
+boundingbox:
+  - '42.9786429'
+  - '43.013399'
+  - '-2.5640803'
+  - '-2.5377521'
