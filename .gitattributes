@@ -1,0 +1,6 @@
+* text=auto
+*.bat text eol=crlf whitespace=cr-at-eol
+# Conserver les octets originaux des sources et leurs empreintes.
+donnees/sources/** -text -diff -whitespace
+donnees/metadonnees/** -text -diff -whitespace
+conception/** -text -whitespace

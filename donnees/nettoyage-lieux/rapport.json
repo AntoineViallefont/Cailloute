@@ -1,0 +1,68 @@
+{
+  "sourceDescriptionsRecovered": 3272,
+  "importedDescriptionsCleaned": 5370,
+  "descriptionsSummarized": 3240,
+  "baseDescriptionsCleaned": 146,
+  "hoursStoredUnchanged": true,
+  "firebaseWrites": 0,
+  "descriptionMaximumCharacters": 360,
+  "currentRun": {
+    "sourceDescriptionsRecovered": 3272,
+    "importedDescriptionsCleaned": 2925,
+    "descriptionsSummarized": 3177,
+    "baseDescriptionsCleaned": 2,
+    "hoursStoredUnchanged": true,
+    "firebaseWrites": 0
+  },
+  "version": "e6aed4ebc5f99b79",
+  "examples": [
+    {
+      "id": "p_ace7fd98d7da5a5682f987d9fb0d7f8a",
+      "original": "Drinking water outside of the toilets",
+      "sourceText": "Eau potable à l’extérieur des toilettes.",
+      "summary": "Eau potable à l’extérieur des toilettes."
+    },
+    {
+      "id": "p_f176d6533e2a522a91f556f7f70a867b",
+      "original": "self cleaning toilet, outside is drinking water",
+      "sourceText": "Toilettes autonettoyantes; eau potable à l’extérieur.",
+      "summary": "Toilettes autonettoyantes; eau potable à l’extérieur."
+    },
+    {
+      "id": "p_26452dce782f5820a3bd1d9fecb70cee",
+      "original": "open vanaf half mei, tot half september, Fietsers en",
+      "sourceText": "Ouvert de mi-mai à mi-septembre. La suite de la description source est incomplète.",
+      "summary": "Ouvert de mi-mai à mi-septembre. La suite de la description source est incomplète."
+    },
+    {
+      "id": "p_424d0f01d66b59f39fa2a62f8a50d6be",
+      "original": "Drinking water doesn't work",
+      "sourceText": "Point d’eau potable hors service.",
+      "summary": "Point d’eau potable hors service."
+    },
+    {
+      "id": "p_c1046af84b2a5ffb9ecfc795f6c703c9",
+      "original": "Drinking water outside of the toilets",
+      "sourceText": "Eau potable à l’extérieur des toilettes.",
+      "summary": "Eau potable à l’extérieur des toilettes."
+    },
+    {
+      "id": "p_2fd86ea097fb522b889a51b799abdcc6",
+      "original": "As of 2025-07-14 it was running out of water",
+      "sourceText": "Manque d’eau signalé le 14 juillet 2025.",
+      "summary": "Manque d’eau signalé le 14 juillet 2025."
+    },
+    {
+      "id": "p_7662f376b4db55e39987f189fd30d8f8",
+      "original": "Tent Pitch, free to use for cyclists.",
+      "sourceText": "Emplacement de tente gratuit pour les cyclistes.",
+      "summary": "Emplacement de tente gratuit pour les cyclistes."
+    },
+    {
+      "id": "p_6d630bcca03d5b9197f46973eaceada0",
+      "original": "In a green , quiet and edge Drome in Die, we welcome you to Domaine du Murier for a pleasant stay in a traditional farmhouse Dromoise 16th century . We suggest you stay: On the natural range of Camping, equipped with very spacious pitches (300 to 400 m²)",
+      "sourceText": "In a green, quiet and edge Drome in Die, we welcome you to Domaine du Murier for a pleasant stay in a traditional farmhouse Dromoise 16th century. We suggest you stay: On the natural range of Camping, equipped with very spacious pitches (300 to 400 m²)",
+      "summary": "In a green, quiet and edge Drome in Die, we welcome you to Domaine du Murier for a pleasant stay in a traditional farmhouse Dromoise 16th century. We suggest you stay: On the natural range of Camping, equipped with very spacious pitches (300 to 400 m²)"
+    }
+  ]
+}

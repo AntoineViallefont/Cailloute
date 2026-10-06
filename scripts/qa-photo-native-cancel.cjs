@@ -1,0 +1,12 @@
+// QA locale : émulateur avec APKdebug, CDPforward9240, fixture /sdcard/Download/cailloute-qa.jpg.
+// Ordre : performance, review, cancel. Aucun compte ni téléversement.
+const{chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');const assert=require('node:assert/strict');
+(async()=>{const b=await chromium.connectOverCDP(process.env.PHOTO_CDP_URL || 'http://localhost:9240',{noDefaults:true});try{const p=b.contexts()[0].pages()[0];const result=await p.evaluate(async()=>{
+const input=await(await fetch(window.Capacitor.convertFileSrc(window.__uri))).blob();const bytes=new Uint8Array(await input.arrayBuffer());let raw='';for(const byte of bytes)raw+=String.fromCharCode(byte);
+const c=window.Capacitor;const {uri}=await c.nativePromise('Filesystem','writeFile',{path:'qa-photo-capture.jpg',directory:'CACHE',data:btoa(raw)});
+try{const r=await c.nativePromise('CaillouteFaces','prepare',{uri,includePosition:false});return {uriType:uri.split(':')[0],maskCount:r.masks.length,previewBytes:atob(r.preview.base64).length};}finally{await c.nativePromise('Filesystem','deleteFile',{path:'qa-photo-capture.jpg',directory:'CACHE'});}});assert.equal(result.maskCount,2);
+await p.reload();await p.getByRole('navigation').getByRole('button',{name:'Contribuer',exact:true}).click();await p.getByRole('button',{name:'Ajouter des photos',exact:true}).click();const picker=p.getByRole('dialog',{name:'Ajouter des photos',exact:true});
+await p.evaluate(()=>{const c=window.Capacitor;window.__nativeBeforeCancel=c.nativePromise;c.nativePromise=function(plugin,method,options){if(plugin==='CailloutePhotoFiles'&&method==='choose')return Promise.resolve({files:[{uri:'content://qa-delayed/photo'}]});if(plugin==='CaillouteFaces'&&method==='prepare')return new Promise(resolve=>window.__lateFace=resolve);return window.__nativeBeforeCancel.call(c,plugin,method,options)}});
+await picker.getByRole('button',{name:'Galerie',exact:true}).click();await p.waitForFunction(()=>!!window.__lateFace);await picker.getByRole('button',{name:'Annuler la préparation',exact:true}).click();await p.waitForFunction(()=>!document.querySelector('.photo-source-actions button').disabled);
+await p.evaluate(()=>{window.__lateFace({base64:'',masks:[],incomplete:false});window.Capacitor.nativePromise=window.__nativeBeforeCancel});assert.equal(await p.getByRole('dialog',{name:/Vérifier la photo/}).count(),0);console.log(JSON.stringify({captureUri:result,cancelStuckNative:true,lateCallbackIgnored:true}));
+}finally{await b.close()}})().catch(e=>{console.error(e);process.exit(1)});

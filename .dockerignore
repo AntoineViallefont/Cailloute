@@ -1,0 +1,10 @@
+.git
+var
+backend/.venv
+**/__pycache__
+**/.pytest_cache
+app
+conception
+livraison
+.env*
+docs

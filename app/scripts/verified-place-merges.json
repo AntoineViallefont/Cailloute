@@ -1,0 +1,631 @@
+[
+  {
+    "members": [
+      "p_08f68d17dcbe5ed29c6a1e153787b54c",
+      "p_fd2c104c8b33560d8d97b5a66fd0085f"
+    ],
+    "sourceKeys": [
+      "culture:68197d5d-03d4-4adc-ac45-8ca1967e0d18"
+    ],
+    "website": "https://www.ugc.fr/cinema.html?id=36",
+    "matchFutureWebsite": true,
+    "patch": {
+      "name": "UGC Ciné Cité Confluence"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_a03e7e1426d75c5a84930a65a9614cd5",
+      "p_3a0e46f3485857a88873e2b50ddd3a88"
+    ],
+    "sourceKeys": [
+      "culture:a09890da-bd56-5329-a75b-69dd85369620"
+    ],
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-le-mans",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Pathé Le Mans"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_9349156c42685a96a6eb7f38caaaa863",
+      "p_f1dd7b350945506b97a7a88380ccdfa5"
+    ],
+    "sourceKeys": [
+      "culture:2c768478-89a7-511c-9689-6c7d44d61386",
+      "osm:way/122581472"
+    ],
+    "website": "https://www.ugc.fr/cinema.html?id=29",
+    "matchFutureWebsite": true,
+    "patch": {
+      "name": "UGC Ciné Cité Ludres"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_f48661b1fc4c5166afa85c00eb553009",
+      "p_34e399ed69d3509388e35e060040fcc8",
+      "p_ba23586b56f054e1ab568388152424fc"
+    ],
+    "sourceKeys": [
+      "culture:a1179fa6-1900-4577-a0e9-be74e30a44c9",
+      "osm:node/4428037589",
+      "osm:way/1072616291"
+    ],
+    "website": "https://www.ugc.fr/cinema.html?id=58",
+    "matchFutureWebsite": true,
+    "patch": {
+      "name": "UGC Ciné Cité Part-Dieu",
+      "website": "https://www.ugc.fr/cinema.html?id=58",
+      "address": "Centre commercial La Part-Dieu, niveau 3 — Les Tables, 69003 Lyon",
+      "hours": "Mo-Su 10:30-00:30"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_d561fb11b2c65ea7932a5b039e0ead2d",
+      "p_8744a11a60b9598ab3d5830b90d6b2d6"
+    ],
+    "sourceKeys": [
+      "osm:way/105099561",
+      "culture:d27590b5-b1cf-55fb-9841-c1d8b80ef388"
+    ],
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-lievin",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Pathé Liévin"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_1b61023ab41c5823ab3d524618276d4f",
+      "p_45b229939e885eff99f24734943b2d4d"
+    ],
+    "sourceKeys": [
+      "osm:node/282416684",
+      "culture:efd90e0b-222a-516d-a71c-d4b79a769fec"
+    ],
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-evreux",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Pathé Évreux"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_b42b9ce4acad5b6cac5893ffa50aa8d6",
+      "p_64cb4949a0535e68a671aad37291b32b"
+    ],
+    "sourceKeys": [
+      "osm:way/1195120422",
+      "culture:af8bf81a-e0ea-552d-be31-ad0f1d723bb7"
+    ],
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-docks-76",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Pathé Docks 76"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_ee534432be485e959bca8ba11cfb6bc7",
+      "p_f7cd6ce4e39f526480b0377e6de0d340"
+    ],
+    "sourceKeys": [
+      "osm:way/65365317",
+      "culture:4d44a243-805b-5450-a7f1-ae43f2779b51"
+    ],
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-grand-quevilly",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Pathé Grand-Quevilly"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_de93e14ab1e1527490432af3f28a32fd",
+      "p_4a5fe7225d4654baaf7bb9fdd7e7ea1a"
+    ],
+    "sourceKeys": [
+      "culture:6fba5cd3-acdf-56a6-b87c-6617caa57e85",
+      "osm:node/620865754"
+    ],
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-montataire",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Pathé Montataire"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_708af8f8f4ef5bfda725b5df96dd3cc2",
+      "p_d77d0a45a0aa5646954156a7a6e0a852"
+    ],
+    "sourceKeys": [
+      "culture:a02d8fbc-cd61-4844-ba30-e37d85ce0341",
+      "osm:node/675138903"
+    ],
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-carre-senart",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Pathé Carré Sénart"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_b4f0ef5da9d652cdb3b8878e9e72b710",
+      "p_8982b2bc5be75af69d791bbe66465b64"
+    ],
+    "sourceKeys": [
+      "osm:node/5903395258",
+      "culture:2df87d96-893d-5ef2-a51c-696cb5b9dd6b"
+    ],
+    "website": "https://www.ugc.fr/cinema.html?id=38",
+    "matchFutureWebsite": true,
+    "patch": {
+      "name": "UGC Ciné Cité O’Parinor"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_842fe22e23c856a788ded6d740b07dd0",
+      "p_18a98f1d536a58e3af995cc9d4819d6c"
+    ],
+    "sourceKeys": [
+      "culture:77c26035-22a1-5572-b379-83e8aa117f5f",
+      "osm:way/79113090"
+    ],
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-brumath",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Pathé Brumath"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_d302adbcfd115252809b7168efbab8b9",
+      "p_96ccd9b06639515db69724e3490d6177"
+    ],
+    "sourceKeys": [
+      "culture:4136d61f-2477-5914-a2ed-f929499b075a",
+      "osm:way/1383671950"
+    ],
+    "website": "https://www.ugc.fr/cinema.html?id=27",
+    "matchFutureWebsite": true,
+    "patch": {
+      "name": "UGC Ciné Cité Mondeville"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_e966cc09f66a5385bc3d65903f5a4689",
+      "p_d3d902d2c6d95333b1b608a825f8a072"
+    ],
+    "sourceKeys": [
+      "culture:33f30412-1029-56cc-b296-d154b43d8ac2",
+      "osm:way/43799904"
+    ],
+    "website": "https://www.ugc.fr/cinema.html?id=30",
+    "matchFutureWebsite": true,
+    "patch": {
+      "name": "UGC Ciné Cité Strasbourg"
+    },
+    "maxDistance": 500,
+    "verifiedAt": "2026-10-05",
+    "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+  },
+  {
+    "members": [
+      "p_c5fc3dc8022550e1af45d75c9bf85975",
+      "p_0b632a32c38e5e3e99f3c1c1bd275814"
+    ],
+    "sourceKeys": [
+      "osm:way/238726819",
+      "culture:f402a7a8-8547-54cf-bbc3-409e95e3ace3"
+    ],
+    "website": "https://www.cgrcinemas.fr/cinema/p0761-cgr-rivesaltes/",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "CGR Rivesaltes",
+      "website": "https://www.cgrcinemas.fr/cinema/p0761-cgr-rivesaltes/",
+      "city": "Rivesaltes",
+      "address": "Centre commercial Cap Roussillon, rue George Méliès, 66600 Rivesaltes"
+    },
+    "preferredPosition": {
+      "id": "p_c5fc3dc8022550e1af45d75c9bf85975",
+      "sourceKey": "osm:way/238726819",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 6,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_69ce10a6d521518cb8f9c8c9ccb339c4",
+      "p_1c5b5d144a335b189dc316468aefabb4"
+    ],
+    "sourceKeys": [
+      "culture:153c0892-fada-550e-8d40-a2c91ef1469f",
+      "osm:way/219131099"
+    ],
+    "website": "https://www.isigny-sur-mer.fr/9-actualites/52-programme-cinema.html",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma Le Club",
+      "website": "https://www.isigny-sur-mer.fr/9-actualites/52-programme-cinema.html",
+      "city": "Isigny-sur-Mer",
+      "address": "Place de Verdun, 14230 Isigny-sur-Mer, France",
+      "description": "salle de cinéma à Isigny-sur-Mer, France"
+    },
+    "preferredPosition": {
+      "id": "p_1c5b5d144a335b189dc316468aefabb4",
+      "sourceKey": "osm:way/219131099",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 7,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_4331fbee3f56573fbd037c0f51be5b30",
+      "p_b2d559e1354755f4b3f92d3dc4c89e9f"
+    ],
+    "sourceKeys": [
+      "osm:way/156680280",
+      "culture:e2aab260-5660-5428-a93a-c8342522de20"
+    ],
+    "website": "https://www.cgrcinemas.fr/cinema/p8517-cgr-chalons-en-champagne/",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "CGR Châlons-en-Champagne",
+      "website": "https://www.cgrcinemas.fr/cinema/p8517-cgr-chalons-en-champagne/",
+      "city": "Châlons-en-Champagne",
+      "address": "Avenue des Escarnotières, 51000 Châlons-en-Champagne, France"
+    },
+    "preferredPosition": {
+      "id": "p_4331fbee3f56573fbd037c0f51be5b30",
+      "sourceKey": "osm:way/156680280",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 8,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_3b1834cc264d566e961820478a741c09",
+      "p_1f440c06e1e752dbb7abbbee457f50bc"
+    ],
+    "sourceKeys": [
+      "culture:e56e9cb2-5ea7-5dc5-a643-cf7893bceccb",
+      "osm:node/3478275607"
+    ],
+    "website": "https://www.culture-lacellesaintcloud.fr/cinema",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma du Théâtre",
+      "website": "https://www.culture-lacellesaintcloud.fr/cinema",
+      "city": "La Celle-Saint-Cloud",
+      "address": "Hôtel de ville, 8E avenue Charles de Gaulle, 78170 La Celle-Saint-Cloud"
+    },
+    "preferredPosition": {
+      "id": "p_1f440c06e1e752dbb7abbbee457f50bc",
+      "sourceKey": "osm:node/3478275607",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 9,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_2fc88f9b4be558e4b486545f5bf84ed3",
+      "p_850a39c1fdf35d458f94e6a647ea0bf6"
+    ],
+    "sourceKeys": [
+      "culture:0ddc2699-1d91-5a88-b9ca-ebc2f5c98955",
+      "osm:way/171085308"
+    ],
+    "website": "https://arzonevenements.fr/cinema-la-locomotive",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma La Locomotive",
+      "website": "https://arzonevenements.fr/cinema-la-locomotive",
+      "city": "Arzon",
+      "address": "2 Place de la Gare, 56640 Arzon, France",
+      "lat": 47.546288628916,
+      "lon": -2.9123425262194,
+      "location_kind": "point"
+    },
+    "preferredPosition": {
+      "id": "p_850a39c1fdf35d458f94e6a647ea0bf6",
+      "sourceKey": "osm:way/171085308",
+      "reason": "Coordonnées du lien itinéraire publié sur le site officiel de La Locomotive."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 11,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_3b30e74482f25e4cbc869e996ce87602",
+      "p_065bc10387515f33a5aef5e4c9d191b0"
+    ],
+    "sourceKeys": [
+      "culture:46813a7c-9806-5508-a9a4-3fbf36ee3609",
+      "osm:node/4924003693"
+    ],
+    "website": "http://www.cinemas-legrandclub.fr/mont-de-marsan",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma Le Grand Club",
+      "website": "http://www.cinemas-legrandclub.fr/mont-de-marsan",
+      "city": "Mont-de-Marsan",
+      "address": "64 Boulevard de la République, 40000 Mont-de-Marsan, France"
+    },
+    "preferredPosition": {
+      "id": "p_065bc10387515f33a5aef5e4c9d191b0",
+      "sourceKey": "osm:node/4924003693",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 12,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_84b31d6623eb51a7a8156aaf4c08b78c",
+      "p_c786938f9d2f59ee9a1913d601345a83"
+    ],
+    "sourceKeys": [
+      "osm:node/12484130441",
+      "culture:101ad295-1b79-5d3e-a18f-7296f35c87fb"
+    ],
+    "website": "https://www.noecinemas.com/pithiviers/",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma Le Mail",
+      "website": "https://www.noecinemas.com/pithiviers/",
+      "city": "Pithiviers",
+      "address": "26 Mail Ouest, 45300 Pithiviers, France"
+    },
+    "preferredPosition": {
+      "id": "p_84b31d6623eb51a7a8156aaf4c08b78c",
+      "sourceKey": "osm:node/12484130441",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 13,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_9afeee91e044578c9616ad07e210d039",
+      "p_42b8e2f2127c500f9db1f743524d553b"
+    ],
+    "sourceKeys": [
+      "culture:c5799ecd-68e4-59bc-926b-1170797b00d2",
+      "osm:node/9631670117"
+    ],
+    "website": "http://www.cineode.fr/joigny",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma Agnès Varda",
+      "website": "https://www.cineode.fr/joigny",
+      "city": "Joigny",
+      "address": "Place Cassini, 89300 Joigny",
+      "description": "Cinéma mono-écran de 118 places, inauguré en septembre 2017. Programmation généraliste et art et essai, séances en VF et VOST, projection 3D et son 7.1."
+    },
+    "preferredPosition": {
+      "id": "p_42b8e2f2127c500f9db1f743524d553b",
+      "sourceKey": "osm:node/9631670117",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 14,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_3fde9aa831325993bd4a63a919379335",
+      "p_97c96797229c57ff8e1b759563e66b6d"
+    ],
+    "sourceKeys": [
+      "culture:84ddc42d-05bb-57ea-a1a0-c1d001378acc",
+      "osm:way/110661609"
+    ],
+    "website": "https://www.space-villers.fr/cinema-villers-sur-mer/",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma du Casino",
+      "website": "https://www.space-villers.fr/cinema-villers-sur-mer/",
+      "city": "Villers-sur-Mer",
+      "address": "Place du Lieutenant Fernand Fanneau, 14640 Villers-sur-Mer",
+      "lat": 49.324975849078854,
+      "lon": -0.0015175398154398364,
+      "location_kind": "point",
+      "description": "Salle climatisée de 188 places à la décoration originale avec portraits d’artistes mythiques, le cinéma du Casino propose un son Dolby Stéréo et une projection numérique pour votre confort."
+    },
+    "preferredPosition": {
+      "id": "p_97c96797229c57ff8e1b759563e66b6d",
+      "sourceKey": "osm:way/110661609",
+      "reason": "Coordonnées de la carte publiée sur la page officielle du cinéma de Villers-sur-Mer."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 15,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_5b06c4f40b04518781fb0ab26473650a",
+      "p_54d6502420185f4eb0dbd7efb28cb1cf"
+    ],
+    "sourceKeys": [
+      "culture:6ddc6ec9-b633-51a9-bb7e-1591c8611f13",
+      "osm:way/119853105"
+    ],
+    "website": "https://www.cgrcinemas.fr/cinema/p0134-cgr-la-rochelle-les-minimes",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "CGR La Rochelle – Les Minimes",
+      "website": "https://www.cgrcinemas.fr/cinema/p0134-cgr-la-rochelle-les-minimes",
+      "city": "La Rochelle",
+      "address": "2 Place Jean Louis Rieupeyrout, 17000 La Rochelle, France"
+    },
+    "preferredPosition": {
+      "id": "p_54d6502420185f4eb0dbd7efb28cb1cf",
+      "sourceKey": "osm:way/119853105",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 16,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_d4e36a95e229527b854575f7c05e0275",
+      "p_2cc7e3b21343566fb9ed3cf6a17e846b"
+    ],
+    "sourceKeys": [
+      "culture:0a7e54ee-fa32-5403-b6d5-6c9c373438a6",
+      "osm:node/1317712984"
+    ],
+    "website": "https://www.cgrcinemas.fr/saint-quentin",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "CGR Saint-Quentin",
+      "website": "https://www.cgrcinemas.fr/saint-quentin",
+      "city": "Saint-Quentin",
+      "address": "18 Quai Gayant, 02100 Saint-Quentin, France",
+      "description": "Multiplexe de 11 salles et 1 840 fauteuils proposant une programmation variée : films jeune public, art et essai et séances en version originale sous-titrée en français."
+    },
+    "preferredPosition": {
+      "id": "p_2cc7e3b21343566fb9ed3cf6a17e846b",
+      "sourceKey": "osm:node/1317712984",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 18,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_c329224fb1625f4ca28a074ad343274f",
+      "p_c269037de40359738e4bd736ff58de03"
+    ],
+    "sourceKeys": [
+      "osm:way/1235440085",
+      "culture:e3360224-78e4-5e53-b242-560b426320d3"
+    ],
+    "website": "https://www.joa.fr/casinos/st-aubin/loisirs/cinema",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma du Casino JOA",
+      "website": "https://www.joa.fr/casinos/st-aubin/loisirs/cinema",
+      "city": "Saint-Aubin-sur-Mer",
+      "address": "128 Rue Pasteur, 14750 Saint-Aubin-sur-Mer, France"
+    },
+    "preferredPosition": {
+      "id": "p_c329224fb1625f4ca28a074ad343274f",
+      "sourceKey": "osm:way/1235440085",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 19,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  },
+  {
+    "members": [
+      "p_5568b3bebcd15b13a3fcf8b6324bef28",
+      "p_bd2dfe77587b533bbc12005857c1118f"
+    ],
+    "sourceKeys": [
+      "osm:way/83621459",
+      "culture:02282f65-0670-5619-89ed-7db744917aba"
+    ],
+    "website": "https://www.cineode.fr/le-vigan-le-palace",
+    "matchFutureWebsite": false,
+    "patch": {
+      "name": "Cinéma Le Palace",
+      "website": "https://www.cineode.fr/le-vigan-le-palace",
+      "city": "Le Vigan",
+      "address": "3 Place du Quai, 30120 Le Vigan, France"
+    },
+    "preferredPosition": {
+      "id": "p_5568b3bebcd15b13a3fcf8b6324bef28",
+      "sourceKey": "osm:way/83621459",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé."
+    },
+    "maxDistance": 100,
+    "authorizedAt": "2026-10-05",
+    "authorization": "Antoine : regrouper les groupes 6,7,8,9,11,12,13,14,15,16,18,19,20.",
+    "validationNumber": 20,
+    "evidence": "Fusion explicitement validée par l’utilisateur. Informations complémentaires conservées ; localisation sélectionnée selon les sources disponibles."
+  }
+]

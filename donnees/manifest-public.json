@@ -1,0 +1,14 @@
+{
+  "version": "0.1.63",
+  "url": "https://github.com/AntoineViallefont/Cailloute/releases/download/v0.1.63-beta.1/Cailloute-donnees-0.1.63.tar.gz",
+  "sha256": "ab0c16810475efb75158c5a3fed646c7758dd139cb00f544aabf637fa6f83aa7",
+  "bytes": 149422578,
+  "paths": [
+    "app/public/france",
+    "app/public/canonical",
+    "app/public/transit-france",
+    "app/public/enrichment",
+    "app/public/place-groups.json",
+    "app/scripts/catalog-group-registry.json"
+  ]
+}

@@ -1,0 +1,9 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Configuration cliente Firebase publique ; accès protégé par les règles serveur."
+condition = "AND"
+paths = ['app/src/free-cloud\.ts$']
+regexTarget = "secret"
+regexes = ['^AIzaSyDtF2Wu0BjTILQ8H_Sktwasr9fWqCdWxRw$']

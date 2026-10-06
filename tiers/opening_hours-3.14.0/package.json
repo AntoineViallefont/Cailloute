@@ -1,0 +1,116 @@
+{
+  "name": "opening_hours",
+  "type": "commonjs",
+  "types": "./types/index.d.ts",
+  "description": "Library to parse and process opening_hours tag from OpenStreetMap data",
+  "version": "3.14.0",
+  "main": "./build/opening_hours.js",
+  "module": "./build/opening_hours.esm.mjs",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./build/opening_hours.esm.mjs",
+      "require": "./build/opening_hours.js",
+      "types": "./types/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "homepage": "https://github.com/opening-hours/opening_hours.js",
+  "author": "Dmitry Marakasov <amdmi3@amdmi3.ru>",
+  "maintainers": [
+    "Robin Schneider <ypid@riseup.net>"
+  ],
+  "contributors": [
+    {
+      "name": "Contributors",
+      "url": "https://github.com/opening-hours/opening_hours.js/graphs/contributors"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opening-hours/opening_hours.js.git"
+  },
+  "bugs": "https://github.com/opening-hours/opening_hours.js/issues?state=open",
+  "keywords": [
+    "openstreetmap",
+    "OSM",
+    "opening_hours"
+  ],
+  "license": "LGPL-3.0-only",
+  "files": [
+    "Makefile",
+    "build/opening_hours.js",
+    "build/opening_hours.esm.mjs",
+    "build/opening_hours.esm.mjs.map",
+    "CHANGELOG.md",
+    "LICENSES/",
+    "REUSE.toml",
+    "site/js/",
+    "src/locales/i18n.js",
+    "types/index.d.ts"
+  ],
+  "directories": {
+    "doc": "./docs/"
+  },
+  "scripts": {
+    "build": "make build",
+    "test-quick": "make check",
+    "test": "make check-full",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "benchmark": "make benchmark",
+    "interactive_testing": "make run-interactive_testing",
+    "regex_search": "make run-regex_search",
+    "prepare": "husky",
+    "readme": "doctoc README.md --title \"## Table of Contents\"",
+    "check-updates": "npm-check-updates --upgrade"
+  },
+  "dependencies": {
+    "i18next": "^26.3.6",
+    "suncalc": "^2.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.1",
+    "@commitlint/config-conventional": "^21.2.0",
+    "@eslint/js": "^10.0.1",
+    "@eslint/markdown": "^8.0.3",
+    "@rollup/plugin-commonjs": "^29.0.3",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^1.0.0",
+    "@rollup/plugin-yaml": "^5.0.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "cldr-dates-full": "^48.2.0",
+    "cldr-localenames-full": "^48.2.0",
+    "commit-and-tag-version": "^12.7.3",
+    "commitizen": "^4.3.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "doctoc": "^2.5.0",
+    "eslint": "^10.7.0",
+    "full-icu": "^1.6.0",
+    "glob": "^13.0.6",
+    "globals": "^17.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "npm-check-updates": "^22.2.9",
+    "package-json-validator-cli": "^0.1.11",
+    "rollup": "^4.62.2",
+    "terser": "^5.49.0",
+    "timekeeper": "^2.3.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.63.0",
+    "yaml": "^2.9.0",
+    "yargs": "^18.0.0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "lint-staged": {
+    "*.{js,mjs,ts}": "eslint --fix"
+  }
+}

@@ -1,0 +1,11 @@
+import * as cloud from '../src/free-cloud';
+import * as store from '../src/store';
+import * as sync from '../src/free-sync';
+import * as budget from '../src/cloud-budget';
+import Dexie from 'dexie';
+import React from 'react';
+import {createRoot} from 'react-dom/client';
+import {Detail} from '../src/Detail';
+import '../src/style.css';
+Dexie.debug=true;
+window.qa={cloud,store,sync,budget,React,show(place){this.root=createRoot(document.body.appendChild(document.createElement('div')));this.root.render(React.createElement(Detail,{place,aerial:false,origin:{lat:45.75,lon:4.83,name:'Lyon'},pmr:false,onClose:()=>{},onShowMap:()=>{},onLogin:()=>{throw Error('Connexion demandée');},toast:s=>{this.toast=s;}}));}};

@@ -1,0 +1,15 @@
+import {createRequire} from 'node:module';import {resolve} from 'node:path';import {writeFile} from 'node:fs/promises';import assert from 'node:assert/strict';
+const require=createRequire(resolve('app/package.json'));const {chromium}=require(resolve(process.env.HOME,'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));
+const browser=await chromium.launch({channel:'chrome',headless:true});
+try{
+ const page=await browser.newPage({viewport:{width:420,height:900},serviceWorkers:'block'});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.addInitScript(()=>{localStorage.setItem('account-welcome-v1','true');localStorage.setItem('origin',JSON.stringify({lat:45.764,lon:4.8357,label:'Lyon',chosen:true}));localStorage.setItem('mapView',JSON.stringify([45.764,4.8357,17]));window.cityReads=[];window.cityLongTasks=[];new PerformanceObserver(l=>window.cityLongTasks.push(...l.getEntries().map(e=>({at:e.startTime,ms:e.duration})))).observe({type:'longtask'});});
+ await page.route('**/src/App.tsx*',async route=>{const r=await route.fetch();let body=await r.text();body=body.replace('const places = loadedPlaces || previousPlaces.current;',`const places = loadedPlaces || previousPlaces.current; window.cityReads.push({at:performance.now(),rows:places.length,bounded:!!readBounds,searchOpen,query});`);await route.fulfill({response:r,body});});
+ await page.route('**/geocodage/search?**',route=>route.fulfill({json:{features:[{geometry:{coordinates:[5.7245,45.1885]},properties:{label:'Grenoble',city:'Grenoble'}}]}}));
+ await page.goto('http://127.0.0.1:5195/');await page.waitForFunction(()=>performance.getEntriesByName('cailloute:ready').length>0,null,{timeout:20000});await page.waitForTimeout(3000);
+ const baseline=await page.evaluate(()=>({rows:window.cityReads.at(-1),tasks:window.cityLongTasks}));await page.evaluate(()=>{window.cityReads=[];window.cityLongTasks=[];});
+ await page.getByPlaceholder('Adresse, lieu, filtre…').fill('Grenoble');await page.locator('.search-results button').filter({hasText:'Grenoble'}).last().click();await page.waitForTimeout(12000);
+ const report=await page.evaluate(()=>({reads:window.cityReads,tasks:window.cityLongTasks,markers:document.querySelectorAll('.leaflet-marker-icon').length,origin:JSON.parse(localStorage.getItem('origin'))}));
+ assert.equal(report.origin.label,'Grenoble');assert.equal(errors.length,0);if(process.argv.includes('--fixed')){assert(report.reads.filter(r=>!r.searchOpen).every(r=>r.bounded));assert(report.reads.at(-1).rows<1000);}
+ const output={baseline,grenoble:report,errors};await writeFile('livraison/QA-CITY-'+(process.argv.includes('--fixed')?'AFTER':'BEFORE')+'-0.1.61.json',JSON.stringify(output,null,2));console.log(JSON.stringify({baseline:baseline.rows,reads:report.reads.length,last:report.reads.at(-1),maxRows:Math.max(...report.reads.map(r=>r.rows)),maxTask:Math.max(0,...report.tasks.map(t=>t.ms)),tasks:report.tasks.length,markers:report.markers}));
+}finally{await browser.close();}

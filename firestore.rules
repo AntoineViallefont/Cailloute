@@ -1,0 +1,368 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signed() { return request.auth != null && request.auth.uid.matches('[A-Za-z0-9_-]{1,128}'); }
+    function verified() { return signed() && request.auth.token.email_verified == true; }
+    function admin() { return verified() && request.auth.token.email in ['admin-secondaire@example.invalid','admin-principal@example.invalid']; }
+    function memberPath() { return /databases/$(database)/documents/members/$(request.auth.uid); }
+    function contributor() { return verified() && (get(memberPath()).data.blocked == false || (get(memberPath()).data.get('moderation', {}).get('until', timestamp.value(0)) > timestamp.value(0) && get(memberPath()).data.moderation.until <= request.time)) && get(memberPath()).data.terms == '2026-09-17' && get(memberPath()).data.adult == true; }
+    function boundedText(value, n) { return value is string && value.size() <= n; }
+    function tri(value) { return value in [null, true, false]; }
+    function validPlace(p, id, version) {
+      return p is map && p.keys().hasOnly(['id','version','name','category','lat','lon','address','city','hours','description','website','activity_type','health_type','pediatric','baby_food','organic','toilet_public','children_clothes','shop_type','information_validated','validated_at','validation_changed_at','age','access','transit_modes','transit_lines','toilets_available','wheelchair','changing_table','drinking_water','free','fenced','elevator','shade','shelter','bench','condition','condition_observed_at','sources','rating','review_count','community','photo_count'])
+        && p.id == id && p.version == version && boundedText(p.name, 160) && p.name.size() > 0
+        && p.category in ['other','health','child_activity','playground','toilet','water','baby_shop','food_shop','transit','changing_table']
+        && p.lat is number && p.lat >= 41 && p.lat <= 52 && p.lon is number && p.lon >= -6 && p.lon <= 10
+        && p.address is string && p.city is string && p.hours is string && p.description is string && p.age is string && p.access is string
+        && p.get('website', '') is string && p.get('activity_type', '') is string && p.get('shop_type', '') is string
+        && p.get('health_type', '') in ['', 'doctor', 'pharmacy', 'emergency']
+        && p.get('validated_at', '') is string && p.get('validation_changed_at', '') is string && p.get('condition', '') is string && p.get('condition_observed_at', '') is string
+        && [p.address,p.city,p.hours,p.description,p.age,p.access,p.get('website',''),p.get('activity_type',''),p.get('shop_type',''),p.get('validated_at',''),p.get('validation_changed_at',''),p.get('condition',''),p.get('condition_observed_at','')].join('').size() <= 5000
+        && (p.get('website', '') == '' || p.website.matches('https?://[^ ]+'))
+        && [p.wheelchair,p.changing_table,p.drinking_water,p.free,p.fenced,p.elevator,p.get('pediatric',null),p.get('baby_food',null),p.get('organic',null),p.get('toilet_public',null),p.get('children_clothes',null),p.get('information_validated',null),p.get('toilets_available',null),p.get('shade',null),p.get('shelter',null),p.get('bench',null)].hasOnly([true,false,null])
+        && p.get('transit_modes', []) is list && p.get('transit_modes', []).hasOnly(['metro','tram','bus','train','ferry','cable']) && p.get('transit_modes', []).size() <= 6
+        && p.get('transit_lines', []) is list && p.get('transit_lines', []).size() <= 80 && p.get('transit_lines', []).join(',').size() <= 1679
+        && p.sources == [] && p.rating == null && p.review_count == 0 && p.community == true && p.photo_count is int && p.photo_count >= 0;
+    }
+    function validReview(r, id, old) {
+      return r is map && r.keys().hasOnly(['id','user_id','author','place_id','stars','text','created','updated','votes','voters','downvotes','downvoters'])
+        && r.id == request.auth.uid && r.user_id == request.auth.uid && r.place_id == id
+        && r.author == get(memberPath()).data.name && r.stars is int && r.stars >= 1 && r.stars <= 5
+        && boundedText(r.text, 1000) && boundedText(r.created, 40) && boundedText(r.updated, 40) && r.votes == old.get('votes', 0) && r.voters == old.get('voters', []) && r.get('downvotes', 0) == old.get('downvotes', 0) && r.get('downvoters', []) == old.get('downvoters', []);
+    }
+    function quotaCoupled(id, data) {
+      let before = get(memberPath()).data;
+      let after = getAfter(memberPath()).data;
+      return data.by == request.auth.uid && boundedText(data.lastOp, 100) && data.lastOp.size() > 0 && data.lastOp.matches('[A-Za-z0-9_-]+')
+        && !(data.lastOp in before.recent) && after.lastOp == data.lastOp && after.lastPlace == id
+        && after.diff(before).affectedKeys().hasAny(['recent'])
+        && ((data.kind == 'place.create' && after.added == before.added + 1)
+          || (data.kind == 'place.delete' && after.deleted == before.deleted + 1)
+          || (data.kind in ['place.edit','place.validate','review.save','review.delete','photo.add','photo.delete'] && after.edited == before.edited + 1));
+    }
+    function validShared(id, old) {
+      let d = request.resource.data;
+      let content = d.kind in ['place.create','place.edit','place.validate'];
+      let review = d.kind in ['review.save','review.delete'];
+      let photo = d.kind in ['photo.add','photo.delete'];
+      return id.size() <= 160 && id.matches('[A-Za-z0-9:_-]+') && d.keys().hasOnly(['place','reviews','deleted','updated','version','cell','lastOp','by','kind','lastPhoto','voteReview'])
+        && d.version == old.version + 1 && d.updated == request.time && d.deleted is bool
+        && boundedText(d.cell, 20) && d.cell.matches('[0-9]{3}:-?[0-9]{1,2}') && (old.version == 0 || d.cell == old.cell)
+        && d.reviews is map && d.reviews.size() <= 20 && quotaCoupled(id, d)
+        && (d.deleted || d.place.photo_count == (old.version == 0 ? 0 : old.place.photo_count) + (photo && !(old.version > 0 && old.place.photo_count == 0 && previewDelta(id) < 0) ? previewDelta(id) : 0))
+        && ((d.kind == 'place.delete' && d.deleted == true && d.place == null && d.reviews.size() == 0)
+          || (d.deleted == false && d.place.version == d.version && d.cell == string(int(math.floor(d.place.lat * 4))) + ':' + string(int(math.floor(d.place.lon * 4)))
+            && (content && validPlace(d.place, id, d.version) && d.reviews == old.reviews
+              || (review || photo) && (old.version == 0 ? validPlace(d.place, id, d.version) : d.place.diff(old.place).affectedKeys().hasOnly(['version','photo_count']) && d.place.photo_count == old.place.photo_count + (photo && !(old.place.photo_count == 0 && previewDelta(id) < 0) ? previewDelta(id) : 0))
+                && (photo && d.reviews == old.reviews
+                  || review && d.reviews.diff(old.reviews).affectedKeys().hasOnly([request.auth.uid])
+                    && (d.kind == 'review.delete' ? !(request.auth.uid in d.reviews) : validReview(d.reviews[request.auth.uid], id, old.reviews.get(request.auth.uid, {})))))));
+    }
+    function budgetPath() { return /databases/$(database)/documents/system/budget; }
+    function newPlaceBudget(id) {
+      let old = get(budgetPath()).data; let next = getAfter(budgetPath()).data;
+      return next.places == old.places + 1 && next.lastType == 'shared' && next.lastId == id;
+    }
+    function anonymousOwnReview() {
+      let uid=request.auth.uid;
+      let before=resource.data.reviews[uid];
+      let after=request.resource.data.reviews[uid];
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reviews','version','place','updated'])
+        && request.resource.data.version == resource.data.version + 1 && request.resource.data.updated == request.time
+        && (resource.data.place == null ? request.resource.data.place == null : request.resource.data.place.diff(resource.data.place).affectedKeys().hasOnly(['version']) && request.resource.data.place.version == request.resource.data.version)
+        && request.resource.data.reviews.diff(resource.data.reviews).affectedKeys().hasOnly([uid])
+        && before.user_id == uid && after.diff(before).affectedKeys().hasOnly(['author']) && after.author == 'Compte supprimé';
+    }
+    function validVote() {
+      let d = request.resource.data;
+      let old = resource.data;
+      let id = d.voteReview;
+      let before = old.reviews[id];
+      let after = d.reviews[id];
+      let up = after.voters;
+      let down = after.downvoters;
+      return old.deleted == false && before.user_id != request.auth.uid
+        && d.diff(old).affectedKeys().hasOnly(['reviews','version','place','updated','voteReview'])
+        && d.version == old.version + 1 && d.updated == request.time
+        && d.place.diff(old.place).affectedKeys().hasOnly(['version']) && d.place.version == d.version
+        && d.reviews.diff(old.reviews).affectedKeys().hasOnly([id])
+        && after.diff(before).affectedKeys().hasOnly(['votes','voters','downvotes','downvoters'])
+        && up is list && down is list && up.size() == up.toSet().size() && down.size() == down.toSet().size()
+        && up.removeAll([request.auth.uid]) == before.voters.removeAll([request.auth.uid])
+        && down.removeAll([request.auth.uid]) == before.get('downvoters', []).removeAll([request.auth.uid])
+        && !(request.auth.uid in up && request.auth.uid in down)
+        && after.votes == up.size() && after.downvotes == down.size();
+    }
+    function reportedModeration(id) {
+      let d=request.resource.data; let old=resource.data;
+      let key=d.get('moderationReport','');
+      let report=get(/databases/$(database)/documents/reports/$(key)).data;
+      let status=getAfter(/databases/$(database)/documents/reports/$(key)).data.status;
+      return report.status == 'pending' && report.placeId == id && status in ['removed','corrected'] && old.deleted == false
+        && d.diff(old).affectedKeys().hasOnly(['place','reviews','deleted','updated','version','lastModeration','moderationReport','lastPhoto'])
+        && d.version == old.version+1 && d.updated == request.time
+        && (report.reviewId != '' ?
+          d.deleted == false && d.place.version == d.version && d.place.diff(old.place).affectedKeys().hasOnly(['version'])
+          && d.reviews.diff(old.reviews).affectedKeys().hasOnly([report.reviewId])
+          && (status == 'removed' ? !(report.reviewId in d.reviews) : report.reviewId in old.reviews && report.reviewId in d.reviews
+            && d.reviews[report.reviewId].diff(old.reviews[report.reviewId]).affectedKeys().hasOnly(['text','updated'])
+            && boundedText(d.reviews[report.reviewId].text,1000) && d.reviews[report.reviewId].text.size()>0 && d.reviews[report.reviewId].updated is string)
+        : report.get('photoId','') != '' ?
+          d.deleted == false && d.lastPhoto == report.photoId && d.reviews == old.reviews && d.place.version == d.version
+          && d.place.diff(old.place).affectedKeys().hasOnly(['version','photo_count'])
+          && d.place.photo_count == (status == 'removed' ? (old.place.photo_count>0 ? old.place.photo_count-1 : 0) : old.place.photo_count)
+          && (status == 'removed' ? !existsAfter(/databases/$(database)/documents/previews/$(report.photoId)) : existsAfter(/databases/$(database)/documents/previews/$(report.photoId)))
+        : status == 'removed' ? d.deleted == true && d.place == null && d.reviews == {}
+        : d.deleted == false && validPlace(d.place,id,d.version) && d.reviews == old.reviews && d.place.photo_count == old.place.photo_count);
+    }
+    function reportedPhoto(id, status) {
+      let shared=getAfter(/databases/$(database)/documents/shared/$(resource.data.placeId)).data;
+      let key=shared.get('moderationReport','');
+      let before=get(/databases/$(database)/documents/reports/$(key)).data;
+      let after=getAfter(/databases/$(database)/documents/reports/$(key)).data;
+      return before.status == 'pending' && before.placeId == resource.data.placeId && before.photoId == id
+        && after.status == status && shared.updated == request.time && shared.lastPhoto == id;
+    }
+
+    function importedModeration(id) {
+      let d=request.resource.data;
+      let report=get(/databases/$(database)/documents/reports/$(d.moderationReport)).data;
+      let status=getAfter(/databases/$(database)/documents/reports/$(d.moderationReport)).data.status;
+      let before=get(budgetPath()).data; let after=getAfter(budgetPath()).data;
+      return report.status == 'pending' && report.placeId == id && report.reviewId == '' && report.get('photoId','') == ''
+        && report.placeSnapshot.id == id && d.keys().hasOnly(['place','reviews','deleted','updated','version','cell','lastOp','by','kind','lastPhoto','moderationReport','lastModeration'])
+        && d.version == 1 && d.updated == request.time && d.reviews == {} && d.kind == 'moderation' && d.by == request.auth.uid && d.lastPhoto == ''
+        && d.cell == string(int(math.floor(report.placeSnapshot.lat*4))) + ':' + string(int(math.floor(report.placeSnapshot.lon*4)))
+        && after.places == before.places+1 && after.lastType == 'moderation-place' && after.lastId == id
+        && (status == 'removed' ? d.deleted == true && d.place == null : status == 'corrected' && d.deleted == false && validPlace(d.place,id,1) && d.place.photo_count == 0
+          && d.cell == string(int(math.floor(d.place.lat*4))) + ':' + string(int(math.floor(d.place.lon*4))));
+    }
+    function ordinarySharedUpdate(id) {
+      let d=request.resource.data; let old=resource.data;
+      return d.get('lastOp','') != old.get('lastOp','')
+        ? contributor() && old.deleted == false && d.kind != 'place.create' && validShared(id,old)
+        : ((signed() && d.reviews.get(request.auth.uid,{}).get('author','') == 'Compte supprimé' && anonymousOwnReview())
+          || (d.get('voteReview','') != '' && contributor() && validVote())
+          || (admin() && d.diff(old).affectedKeys().hasOnly(['place','reviews','updated','version'])
+            && d.place.diff(old.place).affectedKeys().hasOnly(['version']) && d.place.version == d.version
+            && d.updated == request.time && d.version == old.version + 1
+            && d.reviews.diff(old.reviews).addedKeys().size() == 0 && d.reviews.diff(old.reviews).changedKeys().size() == 0));
+    }
+    match /shared/{id} {
+      allow get: if true;
+      allow list: if request.query.limit != null && request.query.limit <= 20;
+      allow create: if request.resource.data.get('moderationReport','') != ''
+        ? admin() && importedModeration(id)
+        : contributor() && newPlaceBudget(id) && validShared(id, {'version': 0, 'reviews': {}});
+      // Un chemin unique évite d’évaluer les règles de contribution pendant une correction.
+      allow update: if request.resource.data.get('moderationReport','') != ''
+        && request.resource.data.get('lastModeration','') != resource.data.get('lastModeration','')
+        ? admin() && reportedModeration(id)
+        : ordinarySharedUpdate(id);
+      allow delete: if false;
+    }
+    function validNickname(d, uid) {
+      return d.name.matches('[A-Za-zÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸàâäçéèêëîïôöùûüÿ0-9_. -]{2,40}') && d.name.matches('[^ ].*[^ ]') && !d.name.matches('.*  .*')
+        && d.nameKey == 'u_' + d.name.lower().replace('[ÀÂÄàâä]','a').replace('[Çç]','c').replace('[ÉÈÊËéèêë]','e').replace('[ÎÏîï]','i').replace('[ÔÖôö]','o').replace('[ÙÛÜùûü]','u').replace('[Ÿÿ]','y')
+        && getAfter(/databases/$(database)/documents/usernames/$(d.nameKey)).data.uid == uid;
+    }
+    match /usernames/{key} {
+      allow get: if signed();
+      allow create: if signed() && request.auth.token.get('firebase', {}).get('sign_in_provider','') != 'anonymous'
+        && request.resource.data.keys().hasOnly(['uid']) && request.resource.data.uid == request.auth.uid
+        && getAfter(memberPath()).data.nameKey == key && validNickname(getAfter(memberPath()).data,request.auth.uid);
+      allow delete: if signed() && resource.data.uid == request.auth.uid
+        && (!existsAfter(memberPath()) || getAfter(memberPath()).data.nameKey != key);
+      allow update, list: if false;
+    }
+    function validMemberCreate(d) {
+      return d.keys().hasOnly(['created','name','nameKey','terms','adult','blocked','added','edited','deleted','day','dailyAdded','dailyEdited','dailyDeleted','recent','lastOp','lastPlace'])
+        && validNickname(d, request.auth.uid) && d.created == request.time && boundedText(d.name, 40) && d.name.size() >= 2 && d.terms == '2026-09-17' && d.adult == true && d.blocked == false
+        && d.added == 0 && d.edited == 0 && d.deleted == 0 && d.dailyAdded == 0 && d.dailyEdited == 0 && d.dailyDeleted == 0
+        && d.day == timestamp.value(0) && d.recent == [] && d.lastOp == '' && d.lastPlace == '';
+    }
+    function validMemberUpdate() {
+      let d = request.resource.data;
+      let b = resource.data;
+      let elevated = admin();
+      let same = b.day == request.time.date();
+      let shared = getAfter(/databases/$(database)/documents/shared/$(d.lastPlace)).data;
+      let kind = shared.kind;
+      let add = kind == 'place.create' ? 1 : 0;
+      let del = kind == 'place.delete' ? 1 : 0;
+      let edit = kind in ['place.edit','place.validate','review.save','review.delete','photo.add','photo.delete'] ? 1 : 0;
+      return d.diff(b).affectedKeys().hasOnly(['added','edited','deleted','day','dailyAdded','dailyEdited','dailyDeleted','recent','lastOp','lastPlace'])
+        && shared.lastOp == d.lastOp && shared.by == request.auth.uid && shared.updated == request.time
+        && !(d.lastOp in b.recent) && boundedText(d.lastOp, 100) && boundedText(d.lastPlace, 160)
+        && d.recent is list && d.recent.size() <= 64
+        && d.recent == (b.recent.size() < 64 ? b.recent.concat([d.lastOp]) : b.recent[1:64].concat([d.lastOp]))
+        && d.day == request.time.date()
+        && d.added == b.added + add && d.edited == b.edited + edit && d.deleted == b.deleted + del
+        && d.dailyAdded == (same ? b.dailyAdded : 0) + add && (elevated || d.dailyAdded <= 5)
+        && d.dailyEdited == (same ? b.dailyEdited : 0) + edit && (elevated || d.dailyEdited <= 10)
+        && d.dailyDeleted == (same ? b.dailyDeleted : 0) + del && (elevated || d.dailyDeleted <= 2);
+    }
+    function validModeration(uid) {
+      let d = request.resource.data;
+      let m = d.moderation;
+      let history = getAfter(/databases/$(database)/documents/members/$(uid)/decisions/$(m.id)).data;
+      return d.diff(resource.data).affectedKeys().hasOnly(['blocked','moderation'])
+        && m.keys().hasOnly(['id','action','reason','until','decidedAt'])
+        && m.id is string && m.id != resource.data.get('moderation', {}).get('id', '')
+        && m.action in ['warning','suspend_7','suspend_30','ban','restore']
+        && boundedText(m.reason,1500) && m.reason.size() >= 5 && m.decidedAt == request.time
+        && m.until is timestamp
+        && (m.action in ['suspend_7','suspend_30'] ? m.until > request.time && m.until <= request.time + duration.value(31,'d') : m.until == timestamp.value(0))
+        && d.blocked == (m.action in ['suspend_7','suspend_30','ban'])
+        && history.diff(m).affectedKeys().hasOnly(['by']) && history.by == request.auth.uid;
+    }
+    match /members/{uid}/decisions/{id} {
+      allow read: if admin() || (signed() && request.auth.uid == uid);
+      allow create: if admin() && request.resource.data.id == id
+        && request.resource.data.diff(getAfter(/databases/$(database)/documents/members/$(uid)).data.moderation).affectedKeys().hasOnly(['by'])
+        && request.resource.data.by == request.auth.uid && request.resource.data.decidedAt == request.time;
+      allow update, delete: if false;
+    }
+    match /members/{uid} {
+      allow get: if signed() && (request.auth.uid == uid || admin());
+      allow delete: if signed() && request.auth.uid == uid && getAfter(budgetPath()).data.members == get(budgetPath()).data.members - 1 && getAfter(budgetPath()).data.lastType == 'member-delete' && getAfter(budgetPath()).data.lastId == uid && (resource.data.get('nameKey','') == '' || !existsAfter(/databases/$(database)/documents/usernames/$(resource.data.nameKey)));
+      allow list: if admin() && request.query.limit <= 20;
+      allow create: if signed() && request.auth.token.get('firebase', {}).get('sign_in_provider','') != 'anonymous' && request.auth.uid == uid && validMemberCreate(request.resource.data) && getAfter(budgetPath()).data.members == get(budgetPath()).data.members + 1 && getAfter(budgetPath()).data.lastType == 'member' && getAfter(budgetPath()).data.lastId == uid;
+      allow update: if (signed() && request.auth.uid == uid && request.resource.data.diff(resource.data).affectedKeys().hasAny(['name','nameKey','terms','adult']) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name','nameKey','terms','adult']) && request.resource.data.terms == '2026-09-17' && request.resource.data.adult == true && validNickname(request.resource.data,uid) && (resource.data.get('nameKey','') == '' || resource.data.nameKey == request.resource.data.nameKey || !existsAfter(/databases/$(database)/documents/usernames/$(resource.data.nameKey))))
+        || (contributor() && request.auth.uid == uid && validMemberUpdate())
+        || (admin() && validModeration(uid));
+    }
+    match /admin/{id} { allow get: if admin(); }
+    function ownReportId(id) { return id == request.auth.uid || id.matches(request.auth.uid + '_[a-f0-9]{24}'); }
+    function reportPhotoSnapshot(d) {
+      let p=d.photoSnapshot;
+      return p is map && p.keys().hasOnly(['id','place_id','user_id','author','url','caption','created'])
+        && p.id == d.photoId && p.place_id == d.placeId && boundedText(p.user_id,128) && boundedText(p.author,40)
+        && boundedText(p.caption,160) && boundedText(p.created,40) && boundedText(p.url,53359) && p.url.matches('data:image/(webp|jpeg|png);base64,[A-Za-z0-9+/=]+');
+    }
+    function reportReviewSnapshot(d) {
+      let r=d.reviewSnapshot;
+      return r is map && r.keys().hasOnly(['id','place_id','user_id','author','text','stars','created','updated','votes','voters'])
+        && r.id == d.reviewId && r.place_id == d.placeId && boundedText(r.user_id,128) && boundedText(r.author,40)
+        && boundedText(r.text,3000) && r.stars is int && r.stars >= 1 && r.stars <= 5 && boundedText(r.created,40) && boundedText(r.updated,40) && r.votes == 0 && r.voters == [];
+    }
+    function validReport(id) {
+      let d = request.resource.data;
+      return signed() && d.keys().hasOnly(['uid','placeId','reviewId','photoId','reason','status','created','placeSnapshot','photoSnapshot','reviewSnapshot'])
+        && d.uid == request.auth.uid && ownReportId(id) && boundedText(d.placeId, 160) && d.placeId.matches('[A-Za-z0-9:_-]+') && boundedText(d.reviewId,128)
+        && ('placeSnapshot' in d ? validPlace(d.placeSnapshot,d.placeId,0) : exists(/databases/$(database)/documents/shared/$(d.placeId)))
+        && (d.reviewId == '' ? !('reviewSnapshot' in d) : ('reviewSnapshot' in d ? reportReviewSnapshot(d) : d.reviewId in get(/databases/$(database)/documents/shared/$(d.placeId)).data.reviews))
+        && boundedText(d.get('photoId',''),320)
+        && (d.get('photoId','') == '' ? !('photoSnapshot' in d) : d.reviewId == '' && ('photoSnapshot' in d ? reportPhotoSnapshot(d) : get(/databases/$(database)/documents/previews/$(d.photoId)).data.placeId == d.placeId))
+        && boundedText(d.reason,1000) && d.reason.size()>0 && d.status == 'pending' && d.created == request.time;
+    }
+    function privateReportResolution() {
+      let d=request.resource.data; let r=resource.data;
+      let patch=d.resolution;
+      return r.status == 'pending' && d.diff(r).affectedKeys().hasOnly(['status','resolution'])
+        && patch is map && (d.status == 'removed' ? patch == {} : d.status == 'corrected' &&
+          (r.get('photoId','') != '' ? patch.keys().hasOnly(['photoUrl']) && boundedText(patch.photoUrl,53359) && patch.photoUrl.matches('data:image/webp;base64,[A-Za-z0-9+/=]+')
+           : r.reviewId != '' && patch.keys().hasOnly(['text']) && boundedText(patch.text,1000) && patch.text.size()>0));
+    }
+    function targetReportOwner() { return resource.data.get('photoSnapshot',{}).get('user_id','') == request.auth.uid || resource.data.get('reviewSnapshot',{}).get('user_id','') == request.auth.uid; }
+    match /reports/{id} {
+      allow create: if validReport(id);
+      allow get: if signed() && (ownReportId(id) || admin() || targetReportOwner());
+      allow list: if signed() && request.query.limit != null && request.query.limit <= 20 && (admin() || resource.data.uid == request.auth.uid || targetReportOwner());
+      allow delete: if signed() && resource.data.uid == request.auth.uid;
+      allow update: if (admin() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status']) && request.resource.data.status in ['removed','dismissed','corrected'])
+        || (admin() && request.resource.data.keys().hasAny(['resolution']) && privateReportResolution())
+        || (validReport(id) && resource.data.uid == request.auth.uid && resource.data.status != 'pending' && request.resource.data.placeId == resource.data.placeId && request.resource.data.reviewId == resource.data.reviewId && request.resource.data.get('photoId','') == resource.data.get('photoId',''));
+    }
+    function validContact(id) {
+      let d = request.resource.data;
+      return verified() && exists(memberPath()) && d.keys().hasOnly(['uid','message','created']) && d.uid == request.auth.uid && id == request.auth.uid
+        && boundedText(d.message, 2000) && d.message.size() > 0 && d.created == request.time;
+    }
+    match /contacts/{id} {
+      allow create: if validContact(id);
+      allow update: if validContact(id) && resource.data.created < request.time.date();
+      allow get: if admin();
+      allow list: if admin() && request.query.limit <= 20;
+      allow delete: if admin() || (signed() && id == request.auth.uid);
+    }
+    match /members/{uid}/badges/helpful {
+      function qualifies() {
+        let d=request.resource.data;
+        let place=getAfter(/databases/$(database)/documents/shared/$(d.placeId)).data;
+        let review=place.reviews[d.reviewId];
+        let positive=review.voters.toSet().difference([uid].toSet());
+        let negative=review.get('downvoters',[]).toSet().difference([uid].toSet());
+        return place.deleted == false && review.user_id == uid && positive.size() >= 3 && positive.size() > negative.size();
+      }
+      allow get: if verified() || (signed() && request.auth.uid == uid);
+      allow create: if verified() && request.resource.data.keys().hasOnly(['placeId','reviewId','earned'])
+        && request.resource.data.earned == request.time && qualifies();
+      allow update: if false;
+      allow delete: if signed() && request.auth.uid == uid;
+    }
+    match /members/{uid}/favorites/{id} {
+      allow get, list: if signed() && request.auth.uid == uid;
+      allow create, update: if signed() && request.auth.token.get('firebase', {}).get('sign_in_provider', '') != 'anonymous' && request.auth.uid == uid && id.size() <= 160
+        && id.matches('[A-Za-z0-9:_-]+') && request.resource.data.keys().hasOnly(['id','value','updated']) && request.resource.data.get('value',true) is bool
+        && request.resource.data.id == id && request.resource.data.updated == request.time;
+      allow delete: if signed() && request.auth.uid == uid;
+    }
+    function previewCoupled(placeId) {
+      let p = getAfter(/databases/$(database)/documents/shared/$(placeId)).data;
+      return p.by == request.auth.uid && p.updated == request.time && p.lastOp == getAfter(memberPath()).data.lastOp;
+    }
+    match /previews/{id} {
+      allow get: if (signed() && resource.data.user_id == request.auth.uid) || !exists(/databases/$(database)/documents/previews/$(id)) || get(/databases/$(database)/documents/shared/$(resource.data.placeId)).data.deleted == false;
+      allow list: if request.query.limit != null && request.query.limit <= 20 && ((signed() && resource.data.user_id == request.auth.uid) || get(/databases/$(database)/documents/shared/$(resource.data.placeId)).data.deleted == false);
+      allow update: if (signed() && resource.data.user_id == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['author']) && request.resource.data.author == 'Compte supprimé')
+        || (admin() && reportedPhoto(id,'corrected') && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['url','caption'])
+          && boundedText(request.resource.data.caption,160) && boundedText(request.resource.data.url,53359) && request.resource.data.url.matches('data:image/webp;base64,[A-Za-z0-9+/=]+'));
+      allow create: if contributor() && request.resource.data.keys().hasOnly(['placeId','user_id','author','url','caption','privacy_reviewed','rights_accepted','created','lastOp'])
+        && id == request.resource.data.placeId + '_' + request.resource.data.lastOp
+        && getAfter(/databases/$(database)/documents/shared/$(request.resource.data.placeId)).data.lastPhoto == id
+        && request.resource.data.privacy_reviewed == true && request.resource.data.rights_accepted == true && request.resource.data.user_id == request.auth.uid && request.resource.data.author == get(memberPath()).data.name
+        && boundedText(request.resource.data.caption, 160) && boundedText(request.resource.data.url, 53359)
+        && request.resource.data.url.matches('data:image/(jpeg|webp);base64,[A-Za-z0-9+/=]+')
+        && request.resource.data.created == request.time && request.resource.data.lastOp == getAfter(memberPath()).data.lastOp
+        && previewCoupled(request.resource.data.placeId)
+        && getAfter(/databases/$(database)/documents/shared/$(request.resource.data.placeId)).data.kind == 'photo.add'
+        && getAfter(budgetPath()).data.previews == get(budgetPath()).data.previews + 1;
+      allow delete: if (admin() && reportedPhoto(id,'removed') && getAfter(budgetPath()).data.lastType == 'moderation' && getAfter(budgetPath()).data.lastId == id && getAfter(budgetPath()).data.previews == get(budgetPath()).data.previews-1)
+        || contributor() && previewCoupled(resource.data.placeId)
+        && getAfter(/databases/$(database)/documents/shared/$(resource.data.placeId)).data.lastPhoto == id
+        && getAfter(/databases/$(database)/documents/shared/$(resource.data.placeId)).data.kind in ['photo.delete','place.delete']
+        && getAfter(budgetPath()).data.previews < get(budgetPath()).data.previews;
+    }
+    function previewDelta(id) {
+      let p = getAfter(/databases/$(database)/documents/shared/$(id)).data;
+      let photo = p.get('lastPhoto', '');
+      return photo == '' ? 0 : (existsAfter(/databases/$(database)/documents/previews/$(photo)) ? 1 : 0)
+        - (exists(/databases/$(database)/documents/previews/$(photo)) ? 1 : 0);
+    }
+    match /system/budget {
+      allow get: if signed();
+      allow update: if request.resource.data.keys().hasOnly(['members','places','previews','lastType','lastId'])
+        && request.resource.data.members is int && request.resource.data.members >= 0 && request.resource.data.members <= 5000
+        && request.resource.data.places is int && request.resource.data.places >= 0 && request.resource.data.places <= 3000
+        && request.resource.data.previews is int && request.resource.data.previews >= 0 && request.resource.data.previews <= 10000
+        && ((signed() && request.resource.data.lastType == 'member' && request.resource.data.lastId == request.auth.uid
+          && !exists(memberPath()) && getAfter(memberPath()).data.created == request.time
+          && request.resource.data.members == resource.data.members + 1 && request.resource.data.places == resource.data.places && request.resource.data.previews == resource.data.previews)
+        || (signed() && request.resource.data.lastType == 'member-delete' && request.resource.data.lastId == request.auth.uid && exists(memberPath()) && !existsAfter(memberPath()) && request.resource.data.members == resource.data.members - 1 && request.resource.data.places == resource.data.places && request.resource.data.previews == resource.data.previews)
+        || (contributor() && request.resource.data.lastType == 'shared'
+          && getAfter(/databases/$(database)/documents/shared/$(request.resource.data.lastId)).data.updated == request.time
+          && getAfter(/databases/$(database)/documents/shared/$(request.resource.data.lastId)).data.by == request.auth.uid
+          && request.resource.data.members == resource.data.members
+          && request.resource.data.places == resource.data.places + (exists(/databases/$(database)/documents/shared/$(request.resource.data.lastId)) ? 0 : 1)
+          && request.resource.data.previews == resource.data.previews + (getAfter(/databases/$(database)/documents/shared/$(request.resource.data.lastId)).data.kind in ['photo.add','photo.delete','place.delete'] ? previewDelta(request.resource.data.lastId) : 0))        || (request.resource.data.lastType == 'moderation' && admin() && exists(/databases/$(database)/documents/previews/$(request.resource.data.lastId)) && !existsAfter(/databases/$(database)/documents/previews/$(request.resource.data.lastId))
+          && request.resource.data.members == resource.data.members && request.resource.data.places == resource.data.places && request.resource.data.previews == resource.data.previews-1)
+        || (request.resource.data.lastType == 'moderation-place' && admin()
+          && !exists(/databases/$(database)/documents/shared/$(request.resource.data.lastId)) && getAfter(/databases/$(database)/documents/shared/$(request.resource.data.lastId)).data.kind == 'moderation'
+          && getAfter(/databases/$(database)/documents/shared/$(request.resource.data.lastId)).data.updated == request.time
+          && request.resource.data.members == resource.data.members && request.resource.data.places == resource.data.places+1 && request.resource.data.previews == resource.data.previews)
+);
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

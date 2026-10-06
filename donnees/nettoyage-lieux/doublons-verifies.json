@@ -1,0 +1,996 @@
+{
+  "date": "2026-10-05",
+  "placesScanned": 669305,
+  "candidateGroups": 35,
+  "verifiedMergedGroups": 14,
+  "duplicateSheetsRemoved": 28,
+  "userPlacesPolicy": "Contributions et éditions personnelles inchangées ; une fusion est ignorée si elle implique un lieu modifié.",
+  "proofs": [
+    {
+      "members": [
+        "p_08f68d17dcbe5ed29c6a1e153787b54c",
+        "p_fd2c104c8b33560d8d97b5a66fd0085f"
+      ],
+      "sourceKeys": [
+        "culture:68197d5d-03d4-4adc-ac45-8ca1967e0d18"
+      ],
+      "website": "https://www.ugc.fr/cinema.html?id=36",
+      "matchFutureWebsite": true,
+      "patch": {
+        "name": "UGC Ciné Cité Confluence"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_a03e7e1426d75c5a84930a65a9614cd5",
+        "p_3a0e46f3485857a88873e2b50ddd3a88"
+      ],
+      "sourceKeys": [
+        "culture:a09890da-bd56-5329-a75b-69dd85369620"
+      ],
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-le-mans",
+      "matchFutureWebsite": false,
+      "patch": {
+        "name": "Pathé Le Mans"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_9349156c42685a96a6eb7f38caaaa863",
+        "p_f1dd7b350945506b97a7a88380ccdfa5"
+      ],
+      "sourceKeys": [
+        "culture:2c768478-89a7-511c-9689-6c7d44d61386",
+        "osm:way/122581472"
+      ],
+      "website": "https://www.ugc.fr/cinema.html?id=29",
+      "matchFutureWebsite": true,
+      "patch": {
+        "name": "UGC Ciné Cité Ludres"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_f48661b1fc4c5166afa85c00eb553009",
+        "p_34e399ed69d3509388e35e060040fcc8",
+        "p_ba23586b56f054e1ab568388152424fc"
+      ],
+      "sourceKeys": [
+        "culture:a1179fa6-1900-4577-a0e9-be74e30a44c9",
+        "osm:node/4428037589",
+        "osm:way/1072616291"
+      ],
+      "website": "https://www.ugc.fr/cinema.html?id=58",
+      "matchFutureWebsite": true,
+      "patch": {
+        "name": "UGC Ciné Cité Part-Dieu",
+        "website": "https://www.ugc.fr/cinema.html?id=58",
+        "address": "Centre commercial La Part-Dieu, niveau 3 — Les Tables, 69003 Lyon",
+        "hours": "Mo-Su 10:30-00:30"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_d561fb11b2c65ea7932a5b039e0ead2d",
+        "p_8744a11a60b9598ab3d5830b90d6b2d6"
+      ],
+      "sourceKeys": [
+        "osm:way/105099561",
+        "culture:d27590b5-b1cf-55fb-9841-c1d8b80ef388"
+      ],
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-lievin",
+      "matchFutureWebsite": false,
+      "patch": {
+        "name": "Pathé Liévin"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_1b61023ab41c5823ab3d524618276d4f",
+        "p_45b229939e885eff99f24734943b2d4d"
+      ],
+      "sourceKeys": [
+        "osm:node/282416684",
+        "culture:efd90e0b-222a-516d-a71c-d4b79a769fec"
+      ],
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-evreux",
+      "matchFutureWebsite": false,
+      "patch": {
+        "name": "Pathé Évreux"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_b42b9ce4acad5b6cac5893ffa50aa8d6",
+        "p_64cb4949a0535e68a671aad37291b32b"
+      ],
+      "sourceKeys": [
+        "osm:way/1195120422",
+        "culture:af8bf81a-e0ea-552d-be31-ad0f1d723bb7"
+      ],
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-docks-76",
+      "matchFutureWebsite": false,
+      "patch": {
+        "name": "Pathé Docks 76"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_ee534432be485e959bca8ba11cfb6bc7",
+        "p_f7cd6ce4e39f526480b0377e6de0d340"
+      ],
+      "sourceKeys": [
+        "osm:way/65365317",
+        "culture:4d44a243-805b-5450-a7f1-ae43f2779b51"
+      ],
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-grand-quevilly",
+      "matchFutureWebsite": false,
+      "patch": {
+        "name": "Pathé Grand-Quevilly"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_de93e14ab1e1527490432af3f28a32fd",
+        "p_4a5fe7225d4654baaf7bb9fdd7e7ea1a"
+      ],
+      "sourceKeys": [
+        "culture:6fba5cd3-acdf-56a6-b87c-6617caa57e85",
+        "osm:node/620865754"
+      ],
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-montataire",
+      "matchFutureWebsite": false,
+      "patch": {
+        "name": "Pathé Montataire"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_708af8f8f4ef5bfda725b5df96dd3cc2",
+        "p_d77d0a45a0aa5646954156a7a6e0a852"
+      ],
+      "sourceKeys": [
+        "culture:a02d8fbc-cd61-4844-ba30-e37d85ce0341",
+        "osm:node/675138903"
+      ],
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-carre-senart",
+      "matchFutureWebsite": false,
+      "patch": {
+        "name": "Pathé Carré Sénart"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_b4f0ef5da9d652cdb3b8878e9e72b710",
+        "p_8982b2bc5be75af69d791bbe66465b64"
+      ],
+      "sourceKeys": [
+        "osm:node/5903395258",
+        "culture:2df87d96-893d-5ef2-a51c-696cb5b9dd6b"
+      ],
+      "website": "https://www.ugc.fr/cinema.html?id=38",
+      "matchFutureWebsite": true,
+      "patch": {
+        "name": "UGC Ciné Cité O’Parinor"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_842fe22e23c856a788ded6d740b07dd0",
+        "p_18a98f1d536a58e3af995cc9d4819d6c"
+      ],
+      "sourceKeys": [
+        "culture:77c26035-22a1-5572-b379-83e8aa117f5f",
+        "osm:way/79113090"
+      ],
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-brumath",
+      "matchFutureWebsite": false,
+      "patch": {
+        "name": "Pathé Brumath"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_d302adbcfd115252809b7168efbab8b9",
+        "p_96ccd9b06639515db69724e3490d6177"
+      ],
+      "sourceKeys": [
+        "culture:4136d61f-2477-5914-a2ed-f929499b075a",
+        "osm:way/1383671950"
+      ],
+      "website": "https://www.ugc.fr/cinema.html?id=27",
+      "matchFutureWebsite": true,
+      "patch": {
+        "name": "UGC Ciné Cité Mondeville"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    },
+    {
+      "members": [
+        "p_e966cc09f66a5385bc3d65903f5a4689",
+        "p_d3d902d2c6d95333b1b608a825f8a072"
+      ],
+      "sourceKeys": [
+        "culture:33f30412-1029-56cc-b296-d154b43d8ac2",
+        "osm:way/43799904"
+      ],
+      "website": "https://www.ugc.fr/cinema.html?id=30",
+      "matchFutureWebsite": true,
+      "patch": {
+        "name": "UGC Ciné Cité Strasbourg"
+      },
+      "maxDistance": 500,
+      "verifiedAt": "2026-10-05",
+      "evidence": "Site officiel : établissement, commune et identité dédiée confirmés."
+    }
+  ],
+  "remaining": [
+    {
+      "website": "https://www.ville-noyon.fr/-Les-musees-de-Noyon",
+      "distance": 143,
+      "places": [
+        {
+          "id": "p_278698e1b3bd5e7796f3f7e069f2d0d7",
+          "name": "Musée du Noyonnais",
+          "city": null,
+          "sources": []
+        },
+        {
+          "id": "p_3cbdf0e492b15387b807af6c77588688",
+          "name": "Musée Jean Calvin",
+          "city": "NOYON",
+          "sources": [
+            {
+              "key": "culture:147e6d3c-182f-5b18-a834-fa585d605ddc",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.pathe.fr/cinemas/cinema-pathe-parnasse",
+      "distance": 108,
+      "places": [
+        {
+          "id": "p_9157c32b1e525296bb50dec0e3debe93",
+          "name": "Pathé Montparnos",
+          "city": null,
+          "sources": []
+        },
+        {
+          "id": "p_89e343974d665701834a59852e00e95a",
+          "name": "Pathé Parnasse",
+          "city": "Paris",
+          "sources": [
+            {
+              "key": "osm:node/259439927",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/node/259439927",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.mk2.com/salle/mk2-quai-seine-quai-loire",
+      "distance": 105,
+      "places": [
+        {
+          "id": "p_ff689674b9f651789d34fed3cb9a39ef",
+          "name": "MK2 Quai de Loire",
+          "city": null,
+          "sources": []
+        },
+        {
+          "id": "p_d1c5b8472f685f2890c56e32a646da0b",
+          "name": "MK2 Quai de Seine",
+          "city": null,
+          "sources": []
+        }
+      ]
+    },
+    {
+      "website": "https://www.cgrcinemas.fr/troyes",
+      "distance": 167,
+      "places": [
+        {
+          "id": "p_9ebce7f0b1dc580dbfdd1432b18cc6ea",
+          "name": "Cinéma CGR Troyes",
+          "city": "TROYES",
+          "sources": [
+            {
+              "key": "culture:51acad9e-decf-58c6-98c8-0ccb5e4e76f5",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_cd2d21233866506fb617840447318953",
+          "name": "CGR",
+          "city": "Troyes",
+          "sources": [
+            {
+              "key": "osm:way/30839378",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/30839378",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.montbeliard.fr/mes-sorties-mes-activites/musees-de-montbeliard.html",
+      "distance": 259,
+      "places": [
+        {
+          "id": "p_47532d42bd0c5b6a9c60771c27b19832",
+          "name": "Château et musée de Montbéliard",
+          "city": "MONTBELIARD",
+          "sources": [
+            {
+              "key": "culture:70196807-4d13-5b8f-ba17-3d50d73e00af",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_5c20e5febd21580d97648157dcc0bce4",
+          "name": "Musée Beurnier-Rosselet",
+          "city": "MONTBELIARD",
+          "sources": [
+            {
+              "key": "culture:d4a7abcc-e98f-5baa-8952-8d273f54dd1b",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.cgrcinemas.fr/cinema/p0761-cgr-rivesaltes/",
+      "distance": 29,
+      "places": [
+        {
+          "id": "p_c5fc3dc8022550e1af45d75c9bf85975",
+          "name": "Méga CGR",
+          "city": "Rivesaltes",
+          "sources": [
+            {
+              "key": "osm:way/238726819",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/238726819",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        },
+        {
+          "id": "p_0b632a32c38e5e3e99f3c1c1bd275814",
+          "name": "Cinéma CGR",
+          "city": "RIVESALTES",
+          "sources": [
+            {
+              "key": "culture:f402a7a8-8547-54cf-bbc3-409e95e3ace3",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.isigny-sur-mer.fr/9-actualites/52-programme-cinema.html",
+      "distance": 24,
+      "places": [
+        {
+          "id": "p_69ce10a6d521518cb8f9c8c9ccb339c4",
+          "name": "Cinéma Le Club",
+          "city": "ISIGNY SUR MER",
+          "sources": [
+            {
+              "key": "culture:153c0892-fada-550e-8d40-a2c91ef1469f",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_1c5b5d144a335b189dc316468aefabb4",
+          "name": "Le Club",
+          "city": "Isigny-sur-Mer",
+          "sources": [
+            {
+              "key": "osm:way/219131099",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/219131099",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.cgrcinemas.fr/cinema/p8517-cgr-chalons-en-champagne/",
+      "distance": 38,
+      "places": [
+        {
+          "id": "p_4331fbee3f56573fbd037c0f51be5b30",
+          "name": "CGR",
+          "city": "Châlons-en-Champagne",
+          "sources": [
+            {
+              "key": "osm:way/156680280",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/156680280",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        },
+        {
+          "id": "p_b2d559e1354755f4b3f92d3dc4c89e9f",
+          "name": "Cinéma CGR",
+          "city": "CHALONS EN CHAMPAGNE",
+          "sources": [
+            {
+              "key": "culture:e2aab260-5660-5428-a93a-c8342522de20",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.culture-lacellesaintcloud.fr/cinema",
+      "distance": 41,
+      "places": [
+        {
+          "id": "p_3b1834cc264d566e961820478a741c09",
+          "name": "Cinéma du Théâtre",
+          "city": "LA CELLE ST CLOUD",
+          "sources": [
+            {
+              "key": "culture:e56e9cb2-5ea7-5dc5-a643-cf7893bceccb",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_1f440c06e1e752dbb7abbbee457f50bc",
+          "name": "Cinéma du Théâtre",
+          "city": "La Celle-Saint-Cloud",
+          "sources": [
+            {
+              "key": "osm:node/3478275607",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/node/3478275607",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.noecinemas.com/elbeuf",
+      "distance": 385,
+      "places": [
+        {
+          "id": "p_7a1f32358eee527cae68014e3d2725a8",
+          "name": "Grand Mercure",
+          "city": "Elbeuf",
+          "sources": [
+            {
+              "key": "osm:way/180028006",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/180028006",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        },
+        {
+          "id": "p_0cf8b3f87d3953399be76656533908cc",
+          "name": "Cinéma Grand Mercure",
+          "city": "ELBEUF",
+          "sources": [
+            {
+              "key": "culture:99174bfa-3c02-5ec1-96d7-231ebf5ac7c5",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://arzonevenements.fr/cinema-la-locomotive",
+      "distance": 25,
+      "places": [
+        {
+          "id": "p_2fc88f9b4be558e4b486545f5bf84ed3",
+          "name": "Cinéma la Locomotive",
+          "city": "ARZON",
+          "sources": [
+            {
+              "key": "culture:0ddc2699-1d91-5a88-b9ca-ebc2f5c98955",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_850a39c1fdf35d458f94e6a647ea0bf6",
+          "name": "La Locomotive",
+          "city": "Arzon",
+          "sources": [
+            {
+              "key": "osm:way/171085308",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/171085308",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "http://www.cinemas-legrandclub.fr/mont-de-marsan",
+      "distance": 40,
+      "places": [
+        {
+          "id": "p_3b30e74482f25e4cbc869e996ce87602",
+          "name": "Le Grand Club Cinéma",
+          "city": "MONT DE MARSAN",
+          "sources": [
+            {
+              "key": "culture:46813a7c-9806-5508-a9a4-3fbf36ee3609",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_065bc10387515f33a5aef5e4c9d191b0",
+          "name": "Le Grand Club",
+          "city": "Mont-de-Marsan",
+          "sources": [
+            {
+              "key": "osm:node/4924003693",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/node/4924003693",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.noecinemas.com/pithiviers/",
+      "distance": 39,
+      "places": [
+        {
+          "id": "p_84b31d6623eb51a7a8156aaf4c08b78c",
+          "name": "Le mail",
+          "city": "Pithiviers",
+          "sources": [
+            {
+              "key": "osm:node/12484130441",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/node/12484130441",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        },
+        {
+          "id": "p_c786938f9d2f59ee9a1913d601345a83",
+          "name": "Cinéma Le Mail",
+          "city": "PITHIVIERS",
+          "sources": [
+            {
+              "key": "culture:101ad295-1b79-5d3e-a18f-7296f35c87fb",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "http://www.cineode.fr/joigny",
+      "distance": 35,
+      "places": [
+        {
+          "id": "p_9afeee91e044578c9616ad07e210d039",
+          "name": "CinéOde",
+          "city": "JOIGNY",
+          "sources": [
+            {
+              "key": "culture:c5799ecd-68e4-59bc-926b-1170797b00d2",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_42b8e2f2127c500f9db1f743524d553b",
+          "name": "Cinéma Agnès Varda",
+          "city": "Joigny",
+          "sources": [
+            {
+              "key": "osm:node/9631670117",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/node/9631670117",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.space-villers.fr/cinema-villers-sur-mer/",
+      "distance": 47,
+      "places": [
+        {
+          "id": "p_3fde9aa831325993bd4a63a919379335",
+          "name": "Cinéma du Casino",
+          "city": "VILLERS SUR MER",
+          "sources": [
+            {
+              "key": "culture:84ddc42d-05bb-57ea-a1a0-c1d001378acc",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_97c96797229c57ff8e1b759563e66b6d",
+          "name": "Cinéma de Villers",
+          "city": "Villers-sur-Mer",
+          "sources": [
+            {
+              "key": "osm:way/110661609",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/110661609",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.cgrcinemas.fr/cinema/p0134-cgr-la-rochelle-les-minimes",
+      "distance": 40,
+      "places": [
+        {
+          "id": "p_5b06c4f40b04518781fb0ab26473650a",
+          "name": "Cinéma CGR Les Minimes",
+          "city": "LA ROCHELLE",
+          "sources": [
+            {
+              "key": "culture:6ddc6ec9-b633-51a9-bb7e-1591c8611f13",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_54d6502420185f4eb0dbd7efb28cb1cf",
+          "name": "Méga CGR",
+          "city": "La Rochelle",
+          "sources": [
+            {
+              "key": "osm:way/119853105",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/119853105",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.redon.fr/patrimoine-architectural",
+      "distance": 479,
+      "places": [
+        {
+          "id": "p_f4dfb4a82a19533fb6fd246e41f1f228",
+          "name": "Monastère des Calvairiennes",
+          "city": "REDON",
+          "sources": [
+            {
+              "key": "culture:269beb2a-35c1-5fc3-a259-b9109613310d",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_239786393e1e57478c86e9bb4c3eaab6",
+          "name": "Abbatiale Saint-Sauveur",
+          "city": "REDON",
+          "sources": [
+            {
+              "key": "culture:66837b12-8205-5d59-9f11-fb4d012c131f",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.cgrcinemas.fr/saint-quentin",
+      "distance": 55,
+      "places": [
+        {
+          "id": "p_d4e36a95e229527b854575f7c05e0275",
+          "name": "Ciné Quai CGR Saint-Quentin",
+          "city": "ST QUENTIN",
+          "sources": [
+            {
+              "key": "culture:0a7e54ee-fa32-5403-b6d5-6c9c373438a6",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        },
+        {
+          "id": "p_2cc7e3b21343566fb9ed3cf6a17e846b",
+          "name": "CGR Saint-Quentin",
+          "city": "Saint-Quentin",
+          "sources": [
+            {
+              "key": "osm:node/1317712984",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/node/1317712984",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.joa.fr/casinos/st-aubin/loisirs/cinema",
+      "distance": 43,
+      "places": [
+        {
+          "id": "p_c329224fb1625f4ca28a074ad343274f",
+          "name": "Cinéma du Casino Joa",
+          "city": "Saint-Aubin-sur-Mer",
+          "sources": [
+            {
+              "key": "osm:way/1235440085",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/1235440085",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        },
+        {
+          "id": "p_c269037de40359738e4bd736ff58de03",
+          "name": "Cinéma du casino JOA",
+          "city": "ST AUBIN SUR MER",
+          "sources": [
+            {
+              "key": "culture:e3360224-78e4-5e53-b242-560b426320d3",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.cineode.fr/le-vigan-le-palace",
+      "distance": 22,
+      "places": [
+        {
+          "id": "p_5568b3bebcd15b13a3fcf8b6324bef28",
+          "name": "Le Palace",
+          "city": "Le Vigan",
+          "sources": [
+            {
+              "key": "osm:way/83621459",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/way/83621459",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        },
+        {
+          "id": "p_bd2dfe77587b533bbc12005857c1118f",
+          "name": "Cinéma Le Palace",
+          "city": "LE VIGAN",
+          "sources": [
+            {
+              "key": "culture:02282f65-0670-5619-89ed-7db744917aba",
+              "name": "Ministère de la Culture · lieux culturels ouverts",
+              "url": "https://www.data.gouv.fr/datasets/base-des-lieux-culturels-ouverts",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-10-02"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "website": "https://www.cinemas-utopia.org/avignon/",
+      "distance": 493,
+      "places": [
+        {
+          "id": "p_6c92882f43255d55ba728532d7b59f4c",
+          "name": "Utopia Manutention",
+          "city": "Avignon",
+          "sources": [
+            {
+              "key": "osm:node/1962912316",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/node/1962912316",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        },
+        {
+          "id": "p_75782f05079d50088a1cc6a75a452706",
+          "name": "Utopia République",
+          "city": "Avignon",
+          "sources": [
+            {
+              "key": "osm:node/2792755435",
+              "name": "OpenStreetMap · GéoDataMine",
+              "url": "https://www.openstreetmap.org/node/2792755435",
+              "license": "ODbL 1.0",
+              "retrieved_at": "2026-09-16T12:00:06.541186+00:00"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "confirmedSeparate": [
+    {
+      "names": [
+        "Pathé Montparnos",
+        "Pathé Parnasse"
+      ],
+      "proof": "https://www.pathe.fr/cinemas/cinema-pathe-parnasse",
+      "reason": "Deux établissements distincts explicitement nommés sur le site officiel, malgré un lien identique dans les imports."
+    },
+    {
+      "names": [
+        "MK2 Quai de Loire",
+        "MK2 Quai de Seine"
+      ],
+      "proof": "https://www.mk2.com/salle/mk2-quai-seine-quai-loire",
+      "reason": "Page commune à deux établissements ; aucune fusion automatique."
+    }
+  ],
+  "firebaseWrites": 0,
+  "deployed": true,
+  "userApprovedMergeNumbers": [
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    18,
+    19,
+    20
+  ],
+  "remainingUnmergedNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    10,
+    17,
+    21
+  ],
+  "totalMergedGroups": 27,
+  "hostingURL": "https://cailloute-macavi.web.app"
+}

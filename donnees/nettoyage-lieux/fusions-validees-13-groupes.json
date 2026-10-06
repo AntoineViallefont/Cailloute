@@ -1,0 +1,235 @@
+{
+  "date": "2026-10-05",
+  "numbers": [
+    6,
+    7,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    18,
+    19,
+    20
+  ],
+  "groups": [
+    {
+      "number": 6,
+      "name": "CGR Rivesaltes",
+      "members": [
+        "p_c5fc3dc8022550e1af45d75c9bf85975",
+        "p_0b632a32c38e5e3e99f3c1c1bd275814"
+      ],
+      "positionSourceId": "p_c5fc3dc8022550e1af45d75c9bf85975",
+      "lat": 42.776233,
+      "lon": 2.909673,
+      "locationKind": "approximate_center",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.cgrcinemas.fr/cinema/p0761-cgr-rivesaltes/",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 7,
+      "name": "Cinéma Le Club",
+      "members": [
+        "p_69ce10a6d521518cb8f9c8c9ccb339c4",
+        "p_1c5b5d144a335b189dc316468aefabb4"
+      ],
+      "positionSourceId": "p_1c5b5d144a335b189dc316468aefabb4",
+      "lat": 49.3197032,
+      "lon": -1.1038504,
+      "locationKind": "approximate_center",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.isigny-sur-mer.fr/9-actualites/52-programme-cinema.html",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 8,
+      "name": "CGR Châlons-en-Champagne",
+      "members": [
+        "p_4331fbee3f56573fbd037c0f51be5b30",
+        "p_b2d559e1354755f4b3f92d3dc4c89e9f"
+      ],
+      "positionSourceId": "p_4331fbee3f56573fbd037c0f51be5b30",
+      "lat": 48.9397475,
+      "lon": 4.3981,
+      "locationKind": "approximate_center",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.cgrcinemas.fr/cinema/p8517-cgr-chalons-en-champagne/",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 9,
+      "name": "Cinéma du Théâtre",
+      "members": [
+        "p_3b1834cc264d566e961820478a741c09",
+        "p_1f440c06e1e752dbb7abbbee457f50bc"
+      ],
+      "positionSourceId": "p_1f440c06e1e752dbb7abbbee457f50bc",
+      "lat": 48.8482081,
+      "lon": 2.136513,
+      "locationKind": "point",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.culture-lacellesaintcloud.fr/cinema",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 11,
+      "name": "Cinéma La Locomotive",
+      "members": [
+        "p_2fc88f9b4be558e4b486545f5bf84ed3",
+        "p_850a39c1fdf35d458f94e6a647ea0bf6"
+      ],
+      "positionSourceId": null,
+      "lat": 47.546288628916,
+      "lon": -2.9123425262194,
+      "locationKind": "point",
+      "reason": "Coordonnées du lien itinéraire publié sur le site officiel de La Locomotive.",
+      "website": "https://arzonevenements.fr/cinema-la-locomotive",
+      "fallbackPositionSourceId": "p_850a39c1fdf35d458f94e6a647ea0bf6",
+      "positionProofUrl": "https://arzonevenements.fr/cinema-la-locomotive",
+      "positionOrigin": "Carte du site officiel"
+    },
+    {
+      "number": 12,
+      "name": "Cinéma Le Grand Club",
+      "members": [
+        "p_3b30e74482f25e4cbc869e996ce87602",
+        "p_065bc10387515f33a5aef5e4c9d191b0"
+      ],
+      "positionSourceId": "p_065bc10387515f33a5aef5e4c9d191b0",
+      "lat": 43.8874323,
+      "lon": -0.5012005,
+      "locationKind": "point",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "http://www.cinemas-legrandclub.fr/mont-de-marsan",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 13,
+      "name": "Cinéma Le Mail",
+      "members": [
+        "p_84b31d6623eb51a7a8156aaf4c08b78c",
+        "p_c786938f9d2f59ee9a1913d601345a83"
+      ],
+      "positionSourceId": "p_84b31d6623eb51a7a8156aaf4c08b78c",
+      "lat": 48.1732569,
+      "lon": 2.2525306,
+      "locationKind": "point",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.noecinemas.com/pithiviers/",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 14,
+      "name": "Cinéma Agnès Varda",
+      "members": [
+        "p_9afeee91e044578c9616ad07e210d039",
+        "p_42b8e2f2127c500f9db1f743524d553b"
+      ],
+      "positionSourceId": "p_42b8e2f2127c500f9db1f743524d553b",
+      "lat": 47.9827223,
+      "lon": 3.4068856,
+      "locationKind": "point",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "http://www.cineode.fr/joigny",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 15,
+      "name": "Cinéma du Casino",
+      "members": [
+        "p_3fde9aa831325993bd4a63a919379335",
+        "p_97c96797229c57ff8e1b759563e66b6d"
+      ],
+      "positionSourceId": null,
+      "lat": 49.324975849078854,
+      "lon": -0.0015175398154398364,
+      "locationKind": "point",
+      "reason": "Coordonnées de la carte publiée sur la page officielle du cinéma de Villers-sur-Mer.",
+      "website": "https://www.space-villers.fr/cinema-villers-sur-mer/",
+      "fallbackPositionSourceId": "p_97c96797229c57ff8e1b759563e66b6d",
+      "positionProofUrl": "https://www.space-villers.fr/cinema-villers-sur-mer/",
+      "positionOrigin": "Carte du site officiel"
+    },
+    {
+      "number": 16,
+      "name": "CGR La Rochelle – Les Minimes",
+      "members": [
+        "p_5b06c4f40b04518781fb0ab26473650a",
+        "p_54d6502420185f4eb0dbd7efb28cb1cf"
+      ],
+      "positionSourceId": "p_54d6502420185f4eb0dbd7efb28cb1cf",
+      "lat": 46.1467796,
+      "lon": -1.1538017,
+      "locationKind": "approximate_center",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.cgrcinemas.fr/cinema/p0134-cgr-la-rochelle-les-minimes",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 18,
+      "name": "CGR Saint-Quentin",
+      "members": [
+        "p_d4e36a95e229527b854575f7c05e0275",
+        "p_2cc7e3b21343566fb9ed3cf6a17e846b"
+      ],
+      "positionSourceId": "p_2cc7e3b21343566fb9ed3cf6a17e846b",
+      "lat": 49.8410672,
+      "lon": 3.2939601,
+      "locationKind": "point",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.cgrcinemas.fr/saint-quentin",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 19,
+      "name": "Cinéma du Casino JOA",
+      "members": [
+        "p_c329224fb1625f4ca28a074ad343274f",
+        "p_c269037de40359738e4bd736ff58de03"
+      ],
+      "positionSourceId": "p_c329224fb1625f4ca28a074ad343274f",
+      "lat": 49.3291242,
+      "lon": -0.3862643,
+      "locationKind": "approximate_center",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.joa.fr/casinos/st-aubin/loisirs/cinema",
+      "positionOrigin": "Repère OSM de l’établissement"
+    },
+    {
+      "number": 20,
+      "name": "Cinéma Le Palace",
+      "members": [
+        "p_5568b3bebcd15b13a3fcf8b6324bef28",
+        "p_bd2dfe77587b533bbc12005857c1118f"
+      ],
+      "positionSourceId": "p_5568b3bebcd15b13a3fcf8b6324bef28",
+      "lat": 43.9915822,
+      "lon": 3.6072983,
+      "locationKind": "approximate_center",
+      "reason": "Repère OSM de cet établissement ; conserve le point cartographié plutôt qu’une moyenne avec le point culturel géocodé.",
+      "website": "https://www.cineode.fr/le-vigan-le-palace",
+      "positionOrigin": "Repère OSM de l’établissement"
+    }
+  ],
+  "userPlacesPreserved": true,
+  "deployed": true,
+  "testsPassed": 345,
+  "buildSucceeded": true,
+  "duplicateSheetsRemoved": 13,
+  "remainingUnmergedNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    10,
+    17,
+    21
+  ],
+  "hostingURL": "https://cailloute-macavi.web.app"
+}

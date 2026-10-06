@@ -1,0 +1,46 @@
+// Capture de l'application Android réelle via son WebView de développement.
+// Préparation : installer l'APK et transférer le socket WebView vers localhost:9222.
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const fs=require('node:fs');const path=require('node:path');
+(async()=>{
+ const browser=await chromium.connectOverCDP('http://127.0.0.1:9222');
+ const page=browser.contexts()[0].pages()[0];page.setDefaultTimeout(15000);
+ const directory=path.resolve('livraison/apercus-0.1.3');fs.mkdirSync(directory,{recursive:true});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const capture=async name=>{await page.screenshot({path:path.join(directory,name+'.png')});console.log('Capture : '+name);};
+ const button=name=>page.getByRole('button',name==='Filtres'?{name:/^Filtres/}:{name,exact:true});
+ const close=()=>page.getByRole('dialog').last().getByRole('button',{name:'Fermer',exact:true}).click();
+ while(await page.getByRole('dialog').count()) await close();
+ if(await page.getByRole('button',{name:'Retour',exact:true}).count()) await button('Retour').click();
+ if(await button('Liste').count()===0) await page.getByRole('navigation').getByRole('button',{name:'Carte',exact:true}).click();
+ if(await button('Liste').count()===0) await button('Carte').first().click();
+ await button('Filtres').click();await button('Réinitialiser').click();await close();
+ await page.getByRole('textbox',{name:'Adresse ou position',exact:true}).fill('Place Bellecour Lyon');await button('Rechercher l’adresse').click();await page.locator('.search-results .result').first().click();
+ await button('Filtres').waitFor();await page.getByText('Chargement des lieux…',{exact:true}).waitFor({state:'hidden'});
+ await capture('00-carte');
+ await button('Filtres').click();
+ if(await page.getByRole('dialog').locator('input[type=checkbox]').count())throw new Error('Cases à cocher dans les filtres');
+ for(const text of ['M Métro PMR','T Tram','B Bus']) await button(text).waitFor();
+ await capture('01-filtres');await close();
+ await button('Choisir le thème').click();await capture('03-apparence');await button('Nuit').click();
+ await button('Filtres').click();await capture('04-filtres-nuit');await close();
+ await button('Choisir le thème').click();await button('Jour').click();
+ await button('Contribuer').click();await capture('05-contribution-lieu');
+ await page.getByLabel('Nom du lieu',{exact:true}).fill('Toilettes du square');await page.getByRole('combobox').first().selectOption('toilet');
+ await button('Continuer').click();await capture('06-contribution-observations');await close();
+ await button('Liste').click();await capture('07-liste');
+ await button('Filtres').click();for(const name of ['Aires de jeux','Points d’eau','Magasins bébé','Alimentation','Transports']) await button(name).click();await close();
+ const toilet=page.getByRole('button',{name:/^Voir /}).first();
+ console.log('Fiche : '+await toilet.getAttribute('aria-label'));await toilet.click();
+ await page.getByRole('button',{name:'Itinéraire',exact:true}).waitFor();
+ await capture('08-fiche-lieu');await button('Itinéraire').click();await capture('09-itineraire');
+ await button('En voiture').click();console.log('Applications : '+await page.getByRole('dialog').last().innerText());
+ await page.getByRole('button',{name:'Toujours',exact:true}).waitFor();
+ await page.getByRole('button',{name:'Maps',exact:true}).click();await capture('10-application-guidage');await close();
+ await button('Donner mon avis').click();await capture('11-avis');await close();
+ await button('Retour').click();await button('Profil').click();await capture('12-profil');
+ await page.getByRole('navigation').getByRole('button',{name:'Carte',exact:true}).click();
+ await button('Carte').first().click();await button('Filtres').click();await button('Réinitialiser').click();await close();
+ fs.writeFileSync(path.join(directory,'erreurs.json'),JSON.stringify(errors,null,2));
+ await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

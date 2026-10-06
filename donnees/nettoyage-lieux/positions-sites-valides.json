@@ -1,0 +1,79 @@
+[
+  {
+    "number": 6,
+    "url": "https://www.cgrcinemas.fr/cinema/p0761-cgr-rivesaltes/",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "number": 7,
+    "url": "https://www.isigny-sur-mer.fr/9-actualites/52-programme-cinema.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "number": 8,
+    "url": "https://www.cgrcinemas.fr/cinema/p8517-cgr-chalons-en-champagne/",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "number": 9,
+    "url": "https://www.culture-lacellesaintcloud.fr/cinema",
+    "mapLinks": [],
+    "geo": []
+  },
+  {
+    "number": 11,
+    "url": "https://arzonevenements.fr/cinema-la-locomotive",
+    "mapLinks": [
+      "https://www.google.com/maps/dir//47.546288628916,-2.9123425262194/"
+    ],
+    "geo": [
+      "39865\",\"lng\":\"-2.7890367678257\"}],\"latitude\":\"47.546288628916\",\"longitude\":\"-2.9123425262194\"},\"superfish\":{\"superfish-main\":{\"id\":\"s"
+    ]
+  },
+  {
+    "number": 12,
+    "url": "https://www.cinemas-legrandclub.fr/mont-de-marsan",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "number": 13,
+    "url": "https://www.noecinemas.com/pithiviers/",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "number": 14,
+    "url": "https://www.cineode.fr/joigny",
+    "mapLinks": [],
+    "geo": []
+  },
+  {
+    "number": 15,
+    "url": "https://www.space-villers.fr/cinema-villers-sur-mer/",
+    "mapLinks": [],
+    "geo": [
+      "                <span data-carte-latitude=\"49.324975849078854\"\r",
+      "                      data-carte-longitude=\"-0.0015175398154398364\"></span>\r"
+    ]
+  },
+  {
+    "number": 16,
+    "url": "https://www.cgrcinemas.fr/cinema/p0134-cgr-la-rochelle-les-minimes",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "number": 18,
+    "url": "https://www.cgrcinemas.fr/saint-quentin",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "number": 19,
+    "url": "https://www.joa.fr/casinos/st-aubin/loisirs/cinema",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "number": 20,
+    "url": "https://www.cineode.fr/le-vigan-le-palace",
+    "mapLinks": [],
+    "geo": []
+  }
+]

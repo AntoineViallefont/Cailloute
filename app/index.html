@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta
+      name="description"
+      content="Cailloute — trouvez les lieux utiles aux sorties en famille."
+    />
+    <link rel="icon" href="/icon.png" />
+    <title>Cailloute</title>
+    <script>
+      try {
+        const theme = JSON.parse(localStorage.getItem("theme") || '"system"');
+        document.documentElement.dataset.theme =
+          theme === "dark" ||
+          (theme === "system" &&
+            matchMedia("(prefers-color-scheme: dark)").matches)
+            ? "dark"
+            : "light";
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Secours autonome si le chargement de l’interface échoue avant React.
+      setTimeout(function () {
+        var root = document.getElementById("root");
+        if (!root || root.hasChildNodes()) return;
+        var main = document.createElement("main");
+        main.style.cssText = "max-width:32rem;margin:15vh auto;padding:1.5rem;font:18px/1.6 system-ui";
+        var title = document.createElement("h1"); title.textContent = "Cailloute n’a pas pu s’ouvrir";
+        var message = document.createElement("p"); message.textContent = "Vos données enregistrées sont conservées. Réessayez de charger l’application.";
+        var button = document.createElement("button"); button.textContent = "Réessayer";
+        button.style.cssText = "font:inherit;padding:.7rem 1rem";
+        button.onclick = function () { location.reload(); };
+        main.append(title, message, button); root.append(main);
+      }, 9000);
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

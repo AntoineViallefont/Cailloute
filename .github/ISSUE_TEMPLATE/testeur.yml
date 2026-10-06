@@ -1,0 +1,32 @@
+name: "Se porter volontaire comme testeur"
+description: "Participer à la bêta GitHub, sans adresse Google."
+title: "[Testeur] "
+body:
+  - type: markdown
+    attributes:
+      value: "Ce formulaire est public. Aucune adresse e-mail ou Google, donnée d’enfant, localisation personnelle, clé ou mot de passe. Votre pseudonyme GitHub suffit. La bêta GitHub est distincte d’un futur test fermé Google Play."
+  - type: textarea
+    id: appareil
+    attributes:
+      label: "Modèle du téléphone et version Android"
+    validations:
+      required: true
+  - type: textarea
+    id: parcours
+    attributes:
+      label: "Ce que vous souhaitez essayer"
+    validations:
+      required: true
+  - type: textarea
+    id: disponibilite
+    attributes:
+      label: "Disponibilité indicative, sans engagement obligatoire"
+    validations:
+      required: true
+  - type: checkboxes
+    id: confidentialite
+    attributes:
+      label: Avant l’envoi
+      options:
+        - label: "Je confirme ne publier aucune information privée dans ce formulaire ni ses pièces jointes."
+          required: true

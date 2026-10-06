@@ -1,0 +1,188 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "shared",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "cell",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "updated",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "reports",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "photoSnapshot.user_id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "reports",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "reviewSnapshot.user_id",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "__name__",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "shared",
+      "fieldPath": "place",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "shared",
+      "fieldPath": "reviews",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "shared",
+      "fieldPath": "lastOp",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "shared",
+      "fieldPath": "by",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "shared",
+      "fieldPath": "kind",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "members",
+      "fieldPath": "name",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "members",
+      "fieldPath": "recent",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "members",
+      "fieldPath": "lastOp",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "members",
+      "fieldPath": "lastPlace",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "contacts",
+      "fieldPath": "message",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "reports",
+      "fieldPath": "reason",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "previews",
+      "fieldPath": "url",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "previews",
+      "fieldPath": "caption",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "previews",
+      "fieldPath": "author",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "previews",
+      "fieldPath": "created",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "previews",
+      "fieldPath": "lastOp",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "previews",
+      "fieldPath": "user_id",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION"
+        },
+        {
+          "order": "DESCENDING",
+          "queryScope": "COLLECTION"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "previews",
+      "fieldPath": "placeId",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION"
+        },
+        {
+          "order": "DESCENDING",
+          "queryScope": "COLLECTION"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "reports",
+      "fieldPath": "placeSnapshot",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "reports",
+      "fieldPath": "photoSnapshot.url",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "reports",
+      "fieldPath": "reviewSnapshot.text",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "reports",
+      "fieldPath": "resolution",
+      "indexes": []
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "appId": "fr.cailloute.app",
+  "appName": "Cailloute",
+  "webDir": "dist",
+  "loggingBehavior": "none",
+  "android": {
+    "allowMixedContent": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    },
+    "FirebaseAuthentication": {
+      "skipNativeAuth": true,
+      "providers": [
+        "google.com"
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Zone sûre de l’icône adaptative, y compris les masques circulaires. -->
+    <item android:width="54dp" android:height="54dp" android:gravity="center" android:drawable="@drawable/cailloute_logo" />
+</layer-list>

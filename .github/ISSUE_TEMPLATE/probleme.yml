@@ -1,0 +1,38 @@
+name: "Signaler un problème"
+description: "Décrire un dysfonctionnement avec des étapes reproductibles."
+title: "[Retour] "
+body:
+  - type: markdown
+    attributes:
+      value: "Ce formulaire est public. Aucune adresse e-mail ou Google, donnée d’enfant, localisation personnelle, clé ou mot de passe. Votre pseudonyme GitHub suffit. La bêta GitHub est distincte d’un futur test fermé Google Play."
+  - type: textarea
+    id: version
+    attributes:
+      label: "Version de Cailloute et version Android"
+    validations:
+      required: true
+  - type: textarea
+    id: appareil
+    attributes:
+      label: "Modèle du téléphone ou navigateur"
+    validations:
+      required: true
+  - type: textarea
+    id: etapes
+    attributes:
+      label: "Étapes pour reproduire le problème"
+    validations:
+      required: true
+  - type: textarea
+    id: attendu
+    attributes:
+      label: "Résultat attendu et résultat observé"
+    validations:
+      required: true
+  - type: checkboxes
+    id: confidentialite
+    attributes:
+      label: Avant l’envoi
+      options:
+        - label: "Je confirme ne publier aucune information privée dans ce formulaire ni ses pièces jointes."
+          required: true

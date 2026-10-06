@@ -1,0 +1,32 @@
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const fs=require('node:fs'),assert=require('node:assert/strict');
+(async()=>{const browser=await chromium.launch({channel:'chrome',headless:true});try{
+ const page=await browser.newPage({viewport:{width:412,height:915}});const forbidden=[];
+ page.on('request',r=>{if(/photo-privacy\/(?:ort|.*onnx)|firestore.googleapis.com.*commit/.test(r.url()))forbidden.push(r.url())});
+ await page.goto(process.env.CAILLOUTE_QA_URL||'http://127.0.0.1:5187');
+ const welcome=page.getByRole('button',{name:'Continuer sans compte',exact:true});if(await welcome.isVisible())await welcome.click();
+ await page.getByRole('navigation').getByRole('button',{name:'Profil',exact:true}).click();
+ const inputPhoto=await page.evaluate(()=>{const c=document.createElement('canvas');c.width=2400;c.height=1600;const ctx=c.getContext('2d');const pixels=ctx.createImageData(c.width,c.height);let state=7;for(let i=0;i<pixels.data.length;i+=4){state=(Math.imul(state,1664525)+1013904223)|0;pixels.data[i]=state&255;pixels.data[i+1]=(state>>>8)&255;pixels.data[i+2]=(state>>>16)&255;pixels.data[i+3]=255;}ctx.putImageData(pixels,0,0);return c.toDataURL('image/jpeg',.95).split(',')[1]});
+ const photo={name:'portrait-test.jpg',mimeType:'image/jpeg',buffer:Buffer.from(inputPhoto,'base64')};
+ const readSaved=()=>page.evaluate(async()=>{const {db}=await import('/src/store.ts');const {avatarKey}=await import('/src/ProfileAvatar.tsx');return(await db.meta.get(avatarKey()))?.value||null});
+ await page.getByRole('button',{name:'Modifier la photo de profil',exact:true}).click();
+ let dialog=page.getByRole('dialog',{name:'Photo de profil',exact:true});
+ await dialog.locator('input[type=file]').setInputFiles(photo);await dialog.locator('canvas').waitFor();
+ const canvas=dialog.locator('canvas'),initial=await canvas.evaluate(c=>c.toDataURL());
+ const box=await canvas.boundingBox();await page.mouse.move(box.x+box.width*.65,box.y+box.height*.5);await page.mouse.down();await page.mouse.move(box.x+box.width*.25,box.y+box.height*.5,{steps:10});await page.mouse.up();
+ assert.notEqual(await canvas.evaluate(c=>c.toDataURL()),initial,'Le glissement doit modifier le recadrage');
+ await canvas.focus();for(let i=0;i<30;i++)await page.keyboard.press('+');
+ await canvas.focus();await page.keyboard.press('ArrowUp');
+ await dialog.getByRole('button',{name:'Enregistrer',exact:true}).click();await dialog.waitFor({state:'detached'});
+ const saved=await readSaved();assert(saved?.startsWith('data:image/jpeg;base64,'));
+ const image=await page.evaluate(async value=>{const b=await(await fetch(value)).blob();const i=await createImageBitmap(b);const result={bytes:b.size,width:i.width,height:i.height};i.close();return result},saved);
+ assert.equal(image.width,320);assert.equal(image.height,320);assert(image.bytes<=20480);
+ const nav=await page.locator('.bottom-nav button').evaluateAll(buttons=>buttons.map(b=>{const i=b.querySelector('svg,.nav-avatar');const r=i.getBoundingClientRect(),t=b.getBoundingClientRect();return{label:b.innerText,width:r.width,height:r.height,tapWidth:t.width,tapHeight:t.height}}));
+ for(const item of nav){assert.equal(item.width,32);assert.equal(item.height,32);assert(item.tapWidth>=44&&item.tapHeight>=44)}
+ await page.getByRole('button',{name:'Modifier la photo de profil',exact:true}).click();dialog=page.getByRole('dialog',{name:'Photo de profil',exact:true});await dialog.locator('input[type=file]').setInputFiles(photo);await dialog.locator('canvas').waitFor();await dialog.locator('canvas').focus();await page.keyboard.press('+');
+ fs.mkdirSync('livraison/apercus-avatar',{recursive:true});await page.screenshot({path:'livraison/apercus-avatar/recadrage.png'});await page.evaluate(()=>document.documentElement.dataset.theme='dark');await page.screenshot({path:'livraison/apercus-avatar/recadrage-nuit.png'});
+ await dialog.getByRole('button',{name:'Annuler',exact:true}).click();assert.equal(await readSaved(),saved,'Annuler conserve la photo précédente');
+ assert.equal(forbidden.length,0,'Pas de détecteur ni d’envoi cloud pour le portrait');
+ await page.reload();await page.locator('.bottom-nav .nav-avatar img').waitFor();assert.equal(await readSaved(),saved);
+ console.log(JSON.stringify({image,nav,drag:true,zoom:true,keyboard:true,cancelPreserves:true,persisted:true,noDetectorOrCloudWrite:true},null,2));
+}finally{await browser.close()}})().catch(e=>{console.error(e);process.exit(1)});

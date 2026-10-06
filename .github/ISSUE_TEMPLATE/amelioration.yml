@@ -1,0 +1,32 @@
+name: "Proposer une amélioration"
+description: "Expliquer un besoin concret pour les sorties avec des enfants."
+title: "[Retour] "
+body:
+  - type: markdown
+    attributes:
+      value: "Ce formulaire est public. Aucune adresse e-mail ou Google, donnée d’enfant, localisation personnelle, clé ou mot de passe. Votre pseudonyme GitHub suffit. La bêta GitHub est distincte d’un futur test fermé Google Play."
+  - type: textarea
+    id: besoin
+    attributes:
+      label: "Quel besoin rencontrez-vous ?"
+    validations:
+      required: true
+  - type: textarea
+    id: proposition
+    attributes:
+      label: "Votre proposition"
+    validations:
+      required: true
+  - type: textarea
+    id: contexte
+    attributes:
+      label: "Exemple d’utilisation, sans données privées"
+    validations:
+      required: true
+  - type: checkboxes
+    id: confidentialite
+    attributes:
+      label: Avant l’envoi
+      options:
+        - label: "Je confirme ne publier aucune information privée dans ce formulaire ni ses pièces jointes."
+          required: true

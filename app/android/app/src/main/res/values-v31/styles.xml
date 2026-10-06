@@ -1,0 +1,8 @@
+<resources>
+    <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/cailloute_launch_bg</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/cailloute_launch_icon</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/cailloute_launch_branding</item>
+        <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
+    </style>
+</resources>
